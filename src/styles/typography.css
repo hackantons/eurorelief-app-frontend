@@ -1,0 +1,53 @@
+@import 'font.css';
+
+:root {
+  --fs: 1rem;
+  --fs-s: 0.8rem;
+  --fs-xs: 0.6rem;
+  --fs-l: 1.5rem;
+}
+
+html {
+  font-size: 120%;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  font-size: var(--fs);
+  line-height: 1.2;
+  color: var(--c-p);
+}
+
+a {
+  cursor: pointer;
+  color: var(--c-p);
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: var(--c-p);
+  font-size: var(--fs);
+}
+
+::selection {
+  color: var(--c-bkg);
+  background: var(--c-p);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--c-h);
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
