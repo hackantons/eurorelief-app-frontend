@@ -6,14 +6,12 @@
   --transition-speed: 200ms;
 
   --c-p: #1d1d1b;
+  --c-p-light: #4a5568;
   --c-h: #000;
-  --c-bkg: #f3f3f3;
+  --c-bkg: #e2e8f0;
 
-  --c-primary: #ff5722;
-  --c-primary-dark: #ba4019;
-  --c-secondary: #00796b;
-  --c-secondary-light: #129282;
-  --c-secondary-dark: #116f63;
+  --c-primary: #4299e1;
+  --c-primary-dark: #2b6cb0;
 
   --c-feedback-error: #af1616;
 
@@ -35,9 +33,7 @@
 
 body.no-outline {
   a,
-  button,
-  .o-helloform__element--type-checkbox .o-helloform__input:focus + label:after,
-  .o-helloform__input:focus {
+  button {
     outline: none;
   }
 }

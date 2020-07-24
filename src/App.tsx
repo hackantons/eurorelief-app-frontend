@@ -1,56 +1,64 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { IntlProvider } from 'react-intl';
 import { Provider, useStoreState, useActions } from 'unistore-hooks';
-import { H as Router } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
+
+import { Loader } from '@app/theme';
+
+import { settingsDB } from '@app/store/idb';
 
 import './App.css';
 
-import { actions, store } from '@app/store';
+import { store, actions } from '@app/store';
 import { State } from '@app/store/types';
-
-import IntlLink from '@app/intl/IntlLink';
-import { Logo } from '@app/theme';
-import Menu from '@comp/App/Menu';
-import Content from '@comp/Page/Content';
-import Map from '@comp/Map/Map';
-import Settings from '@comp/App/Settings/Settings';
+import { validateToken } from '@app/vendor/api';
+import LogIn from '@comp/login/LogIn';
 
 const App = () => {
-  const { intlLocale, intlMessages }: State = useStoreState([
+  const [init, setInit] = useState<boolean>(false);
+
+  const { intlLocale, intlMessages, auth }: State = useStoreState([
     'intlLocale',
     'intlMessages',
+    'auth',
   ]);
-
-  const { setIdbLoved } = useActions(actions);
+  const { setAuth } = useActions(actions);
 
   useEffect(() => {
-    setIdbLoved();
+    settingsDB
+      .get('jwt')
+      .then((jwt: string) =>
+        validateToken(jwt)
+          .then(auth => {
+            setAuth(auth);
+            setInit(true);
+          })
+          .catch(() => setInit(true))
+      )
+      .catch(() => setInit(true));
   }, []);
 
   return (
     <IntlProvider locale={intlLocale} messages={intlMessages}>
-      <div className="app">
-        <IntlLink href="/" className="app__controls app__controls--logo">
-          <Logo className="app__logo" />
-        </IntlLink>
-        <Menu className="app__controls app__controls--menu" />
-        <Settings
-          className="app__controls app__controls--settings"
-          settingsClassName="app__settings"
-        />
-        <Content className="app__content" />
-        <Map className="app__map" />
-      </div>
+      {init ? (
+        auth ? (
+          <p>ID: {auth.id}</p>
+        ) : (
+          <LogIn className="app-login" setAuth={setAuth} />
+        )
+      ) : (
+        <Loader className="app-loader" />
+      )}
     </IntlProvider>
   );
 };
 
 ReactDOM.render(
   <Provider value={store}>
-    <Router>
+    <HashRouter>
       <App />
-    </Router>
+    </HashRouter>
   </Provider>,
   document.querySelector('#app')
 );

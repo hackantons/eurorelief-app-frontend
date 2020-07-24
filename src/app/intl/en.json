@@ -1,0 +1,6 @@
+{
+  "form.validate.required": "This field is required",
+  "login.number": "Number",
+  "login.password": "Password",
+  "login.submit": "Log In"
+}
