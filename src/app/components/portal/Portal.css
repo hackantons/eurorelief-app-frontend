@@ -1,0 +1,13 @@
+.portal {
+  &__header {
+    border-bottom: 1px solid var(--c-gray);
+  }
+
+  &__content {
+    padding: var(--spacing);
+
+    & > * + * {
+      margin-top: var(--spacing-half);
+    }
+  }
+}

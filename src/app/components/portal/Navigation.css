@@ -1,0 +1,38 @@
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 var(--spacing-half);
+
+  &__element {
+    text-decoration: none;
+    padding: var(--spacing-half);
+    display: flex;
+    align-items: center;
+    @mixin transition;
+
+    &:hover {
+      background-color: var(--c-gray-light);
+    }
+
+    &-icon {
+      margin-right: 0.3em;
+      color: var(--c-gray-dark);
+      font-size: 1.5rem;
+    }
+
+    &--active {
+      text-decoration: underline;
+    }
+
+    &--home {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: auto;
+      line-height: 1;
+
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+}

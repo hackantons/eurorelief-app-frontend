@@ -6,9 +6,9 @@
   --transition-speed: 200ms;
 
   --c-p: #1d1d1b;
-  --c-p-light: #4a5568;
+  --c-p-light: #5a667a;
   --c-h: #000;
-  --c-bkg: #e2e8f0;
+  --c-bkg: #e8eef6;
 
   --c-primary: #4299e1;
   --c-primary-dark: #2b6cb0;
@@ -16,7 +16,7 @@
   --c-feedback-error: #af1616;
 
   --c-gray: #b9b8b8;
-  --c-gray-light: #e8e7e7;
+  --c-gray-light: #f3f2f2;
   --c-gray-dark: #989898;
 
   --bp-phone: 330px;

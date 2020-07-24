@@ -1,6 +1,10 @@
 {
+  "404.title": "404 Error",
+  "404.content": "This Page could not be found",
   "form.validate.required": "This field is required",
   "login.number": "Number",
   "login.password": "Password",
-  "login.submit": "Log In"
+  "login.submit": "Log In",
+  "navigation.tickets": "Tickets",
+  "navigation.notifications": "Notifications"
 }

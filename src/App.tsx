@@ -14,6 +14,7 @@ import { store, actions } from '@app/store';
 import { State } from '@app/store/types';
 import { validateToken } from '@app/vendor/api';
 import LogIn from '@comp/login/LogIn';
+import Portal from '@comp/portal/Portal';
 
 const App = () => {
   const [init, setInit] = useState<boolean>(false);
@@ -43,7 +44,7 @@ const App = () => {
     <IntlProvider locale={intlLocale} messages={intlMessages}>
       {init ? (
         auth ? (
-          <p>ID: {auth.id}</p>
+          <Portal className="app" />
         ) : (
           <LogIn className="app-login" setAuth={setAuth} />
         )
