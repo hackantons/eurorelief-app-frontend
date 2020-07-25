@@ -3,7 +3,9 @@ body {
 }
 
 html,
-body {
+body,
+#app {
+  height: 100%;
 }
 
 body::-webkit-scrollbar {

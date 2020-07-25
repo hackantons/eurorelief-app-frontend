@@ -6,10 +6,13 @@ import {
   FormFieldset,
   InputText,
   Button,
+  Message,
 } from '@app/theme';
 import { useIntl } from 'react-intl';
 import { logIn } from '@app/vendor/api';
 import { settingsDB } from '@app/store/idb';
+
+import './LogIn.css';
 
 const LogIn = ({
   setAuth,
@@ -20,6 +23,7 @@ const LogIn = ({
 }) => {
   const { formatMessage } = useIntl();
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
 
   return (
     <Form
@@ -33,9 +37,10 @@ const LogIn = ({
             settingsDB.set('jwt', jwt);
             setAuth({ id });
           })
+          .catch(() => setError(formatMessage({ id: 'login.error.invalid' })))
           .finally(() => setLoading(false));
       }}
-      className={className}
+      className={`${className} login`}
     >
       <FormFieldset stacked>
         <FormField
@@ -60,6 +65,11 @@ const LogIn = ({
           {formatMessage({ id: 'login.submit' })}
         </Button>
       </FormControls>
+      {error !== '' && (
+        <Message type="error" className="login__error">
+          {error}
+        </Message>
+      )}
     </Form>
   );
 };

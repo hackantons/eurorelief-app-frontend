@@ -4,6 +4,7 @@ import Page from '@comp/portal/Page';
 import { Route } from 'react-router-dom';
 
 import './Portal.css';
+import { Message } from '@app/theme';
 
 const Portal = ({ className = '' }: { className?: string }) => (
   <div className={`${className} portal`}>
@@ -14,6 +15,7 @@ const Portal = ({ className = '' }: { className?: string }) => (
       </Route>
       <Route path="/" exact>
         <h1>Home</h1>
+        <Message>Welcome back!</Message>
       </Route>
     </div>
   </div>

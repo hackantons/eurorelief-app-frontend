@@ -9,28 +9,30 @@ const Navigation = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <nav className={`${className} navigation`}>
-      <NavLink
-        to="/"
-        exact
-        className="navigation__element navigation__element--home"
-      >
-        Camp
-      </NavLink>
-      {['tickets', 'notifications'].map(type => (
+    <div className={`${className} navigation`}>
+      <nav className="navigation__content">
         <NavLink
-          to={`/${type}/`}
+          to="/"
           exact
-          className={`navigation__element navigation__element--${type}`}
-          activeClassName="navigation__element--active"
+          className="navigation__element navigation__element--home"
         >
-          <Icon icon={`mdi/${type}`} className="navigation__element-icon" />
-          <span className="navigation__element-text">
-            {formatMessage({ id: `navigation.${type}` })}
-          </span>
+          Camp
         </NavLink>
-      ))}
-    </nav>
+        {['tickets', 'notifications'].map(type => (
+          <NavLink
+            to={`/${type}/`}
+            exact
+            className={`navigation__element navigation__element--${type}`}
+            activeClassName="navigation__element--active"
+          >
+            <Icon icon={`mdi/${type}`} className="navigation__element-icon" />
+            <span className="navigation__element-text">
+              {formatMessage({ id: `navigation.${type}` })}
+            </span>
+          </NavLink>
+        ))}
+      </nav>
+    </div>
   );
 };
 

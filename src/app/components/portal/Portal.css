@@ -1,9 +1,14 @@
 .portal {
   &__header {
-    border-bottom: 1px solid var(--c-gray);
+    //border-bottom: 1px solid var(--c-gray);
+    @mixin box-shadow;
+    background-color: #fff;
   }
 
   &__content {
+    max-width: var(--portal-max-width);
+    width: 100%;
+    margin: 0 auto;
     padding: var(--spacing);
 
     & > * + * {

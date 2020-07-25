@@ -42,15 +42,20 @@ const App = () => {
 
   return (
     <IntlProvider locale={intlLocale} messages={intlMessages}>
-      {init ? (
-        auth ? (
-          <Portal className="app" />
+      <div className="app">
+        {init ? (
+          <React.Fragment>
+            {auth ? (
+              <Portal className="app__portal" />
+            ) : (
+              <LogIn className="app__login" setAuth={setAuth} />
+            )}
+            <div className="app__footer">FOOTER</div>
+          </React.Fragment>
         ) : (
-          <LogIn className="app-login" setAuth={setAuth} />
-        )
-      ) : (
-        <Loader className="app-loader" />
-      )}
+          <Loader className="app__loader" />
+        )}
+      </div>
     </IntlProvider>
   );
 };

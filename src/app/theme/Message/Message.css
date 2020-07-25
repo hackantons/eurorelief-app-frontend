@@ -1,4 +1,22 @@
 .message {
+  border: 1px solid currentColor;
+  border-left-width: 6px;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+
+  &__content {
+    & + * + {
+      margin-top: var(--spacing-half);
+    }
+  }
+
+  &__icon {
+    margin-right: 0.5em;
+    font-size: 2rem;
+  }
+
+  color: var(--c-primary-dark);
   &--error {
     color: var(--c-feedback-error);
   }

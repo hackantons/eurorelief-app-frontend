@@ -1,7 +1,13 @@
 .navigation {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 var(--spacing-half);
+  &__content {
+    margin: 0 auto;
+    max-width: var(--portal-max-width);
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--spacing-half);
+  }
 
   &__element {
     text-decoration: none;
