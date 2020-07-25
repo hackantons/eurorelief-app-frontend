@@ -2,6 +2,7 @@
   "404.title": "404 Error",
   "404.content": "Die Seite konnte nicht gefunden werden.",
   "form.validate.required": "Dies ist ein Pflichtfeld",
+  "tickets.loadingError": "Es gab einen Fehler beim laden der Tickets",
   "language": "Sprache: {lang}",
   "language.change": "Sprache ändern",
   "login.number": "Telefonnummer",
@@ -10,6 +11,7 @@
   "login.error.invalid": "Ungültige Nummer oder Passwort",
   "navigation.tickets": "Tickets",
   "navigation.notifications": "Meldungen",
+  "notification.date": "Datum: {date}",
   "push.title": "Push Notifications",
   "push.about": "Push Notifications allow you to recieve important informations about the camp or your tickets immediately. Press \"register\" and confirm the registration afterwards",
   "push.register": "Registrieren"

@@ -25,9 +25,7 @@ const App = () => {
     'intlMessages',
     'auth',
   ]);
-  const { setAuth } = useActions(actions);
-
-  console.log('init', init);
+  const { setAuth, updateNotifications } = useActions(actions);
 
   useEffect(() => {
     settingsDB
@@ -42,6 +40,10 @@ const App = () => {
       )
       .catch(() => setInit(true));
   }, []);
+
+  useEffect(() => {
+    updateNotifications();
+  });
 
   return (
     <IntlProvider locale={intlLocale} messages={intlMessages}>

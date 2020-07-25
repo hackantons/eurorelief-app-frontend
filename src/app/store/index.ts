@@ -5,11 +5,13 @@ import { State } from '@app/store/types';
 import createStore, { Store } from 'unistore';
 import devtools from 'unistore/devtools';
 import { settingsDB } from '@app/store/idb';
+import { getNotifications } from '@app/vendor/api';
 
 const initialState: State = {
   intlLocale: defaultLocale,
   intlMessages: locales[defaultLocale][1],
   auth: false,
+  notifications: [],
 };
 
 export const actions = (store: Store<State>) => ({
@@ -23,6 +25,12 @@ export const actions = (store: Store<State>) => ({
     });
   },
   setAuth: ({ auth }, newAuth) => store.setState({ auth: newAuth }),
+  updateNotifications: () =>
+    getNotifications().then(notifications => {
+      console.log('notifications', notifications);
+      // @ts-ignore
+      store.setState({ notifications });
+    }),
 });
 
 export const store = isDev

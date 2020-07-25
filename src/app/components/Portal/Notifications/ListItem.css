@@ -1,0 +1,17 @@
+.notification-list-item {
+  padding: var(--spacing);
+
+  & + .notification-list-item {
+    border-top: 1px solid var(--c-gray);
+  }
+
+  &__date {
+    color: var(--c-gray);
+    font-size: var(--fs-s);
+    font-weight: bold;
+  }
+
+  &__text {
+    margin-top: var(--spacing-half);
+  }
+}

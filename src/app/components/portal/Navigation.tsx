@@ -2,14 +2,18 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon } from '@app/theme';
 import { useIntl } from 'react-intl';
+import { State } from '@app/store/types';
+import { useStoreState } from 'unistore-hooks';
 
 import './Navigation.css';
 
 const Navigation = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
+  const { notifications }: State = useStoreState(['notifications']);
+
   const badges = {
     tickets: 0,
-    notifications: 3,
+    notifications: notifications.length,
   };
 
   return (

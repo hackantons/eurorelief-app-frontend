@@ -1,0 +1,17 @@
+.tickets-list-item {
+  padding: var(--spacing);
+
+  & + .tickets-list-item {
+    border-top: 1px solid var(--c-gray);
+  }
+
+  &__date {
+    color: var(--c-gray);
+    font-size: var(--fs-s);
+    font-weight: bold;
+  }
+
+  &__title {
+    margin-top: var(--spacing-half);
+  }
+}

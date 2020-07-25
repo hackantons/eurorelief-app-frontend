@@ -1,0 +1,8 @@
+.tickets-list {
+  @mixin box-shadow;
+  background-color: #fff;
+
+  &__loader {
+    padding: var(--spacing) 0;
+  }
+}
