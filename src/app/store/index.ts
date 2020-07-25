@@ -27,7 +27,6 @@ export const actions = (store: Store<State>) => ({
   setAuth: ({ auth }, newAuth) => store.setState({ auth: newAuth }),
   updateNotifications: () =>
     getNotifications().then(notifications => {
-      console.log('notifications', notifications);
       // @ts-ignore
       store.setState({ notifications });
     }),
