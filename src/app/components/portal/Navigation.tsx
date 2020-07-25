@@ -7,6 +7,10 @@ import './Navigation.css';
 
 const Navigation = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
+  const badges = {
+    tickets: 0,
+    notifications: 3,
+  };
 
   return (
     <div className={`${className} navigation`}>
@@ -29,6 +33,13 @@ const Navigation = ({ className = '' }: { className?: string }) => {
             <span className="navigation__element-text">
               {formatMessage({ id: `navigation.${type}` })}
             </span>
+            {type in badges && badges[type] !== 0 && (
+              <span className="navigation__element-badge">
+                <span className="navigation__element-badge-number">
+                  {badges[type]}
+                </span>
+              </span>
+            )}
           </NavLink>
         ))}
       </nav>

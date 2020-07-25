@@ -1,0 +1,28 @@
+.language-switch {
+  display: flex;
+
+  &__button {
+    margin-left: 0.5rem;
+    align-items: center;
+
+    svg {
+      transform: translateY(15%);
+    }
+  }
+
+  &__language {
+    width: 100%;
+    line-height: 100%;
+    padding: 0.7em 0;
+    text-align: left;
+    border-bottom: 1px solid var(--c-gray);
+
+    &:first-child {
+      border-top: 1px solid var(--c-gray);
+    }
+
+    &--active {
+      font-weight: bold;
+    }
+  }
+}

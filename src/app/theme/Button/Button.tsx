@@ -13,6 +13,7 @@ const Button = ({
   round = false,
   white = false,
   loading = false,
+  ui = 'normal',
   icon,
   ...props
 }: {
@@ -23,11 +24,12 @@ const Button = ({
   white?: boolean;
   icon?: string;
   loading?: boolean;
+  ui?: 'normal' | 'none';
   [x: string]: any;
 }) => {
   return (
     <button
-      className={cn(className, 'button', {
+      className={cn(className, 'button', 'button--type-' + ui, {
         'button--icon': icon,
         'button--round': round,
         'button--has-text': children,

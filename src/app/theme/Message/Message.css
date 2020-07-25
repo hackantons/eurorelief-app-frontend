@@ -1,9 +1,9 @@
 .message {
   border: 1px solid currentColor;
   border-left-width: 6px;
-  padding: 0.8rem;
+  padding: 0.6rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   &__content {
     & + * + {
@@ -12,8 +12,16 @@
   }
 
   &__icon {
-    margin-right: 0.5em;
-    font-size: 2rem;
+    margin-right: 0.4em;
+    font-size: 1.5rem;
+  }
+
+  @mixin desktop {
+    padding: 0.8rem;
+    &__icon {
+      margin-right: 0.5em;
+      font-size: 2rem;
+    }
   }
 
   color: var(--c-primary-dark);

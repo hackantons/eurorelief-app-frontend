@@ -16,6 +16,10 @@
     align-self: center;
     padding: var(--spacing-half);
   }
+
+  &__loader {
+    margin-top: 10vh;
+  }
 }
 
 /*

@@ -13,8 +13,9 @@ import './App.css';
 import { store, actions } from '@app/store';
 import { State } from '@app/store/types';
 import { validateToken } from '@app/vendor/api';
-import LogIn from '@comp/login/LogIn';
-import Portal from '@comp/portal/Portal';
+import LogIn from '@comp/Login/LogIn';
+import Portal from '@comp/Portal/Portal';
+import Footer from '@comp/Footer/Footer';
 
 const App = () => {
   const [init, setInit] = useState<boolean>(false);
@@ -25,6 +26,8 @@ const App = () => {
     'auth',
   ]);
   const { setAuth } = useActions(actions);
+
+  console.log('init', init);
 
   useEffect(() => {
     settingsDB
@@ -50,7 +53,7 @@ const App = () => {
             ) : (
               <LogIn className="app__login" setAuth={setAuth} />
             )}
-            <div className="app__footer">FOOTER</div>
+            <Footer className="app__footer" />
           </React.Fragment>
         ) : (
           <Loader className="app__loader" />

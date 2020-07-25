@@ -2,10 +2,15 @@
   "404.title": "404 Error",
   "404.content": "This Page could not be found",
   "form.validate.required": "This field is required",
+  "language": "Language: {lang}",
+  "language.change": "Change language",
   "login.number": "Phome-Number",
   "login.password": "Password",
   "login.submit": "Log In",
   "login.error.invalid": "Invalid number or password",
   "navigation.tickets": "Tickets",
-  "navigation.notifications": "Notifications"
+  "navigation.notifications": "Notifications",
+  "push.title": "Push Notifications",
+  "push.about": "Push Notifications allow you to recieve important informations about the camp or your tickets immediately. Press \"register\" and confirm the registration afterwards",
+  "push.register": "Register"
 }

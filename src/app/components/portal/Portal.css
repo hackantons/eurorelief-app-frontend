@@ -1,6 +1,5 @@
 .portal {
   &__header {
-    //border-bottom: 1px solid var(--c-gray);
     @mixin box-shadow;
     background-color: #fff;
   }

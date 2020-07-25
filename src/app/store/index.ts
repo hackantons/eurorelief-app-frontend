@@ -13,6 +13,15 @@ const initialState: State = {
 };
 
 export const actions = (store: Store<State>) => ({
+  setLocale: (state, intl) => {
+    if (!(intl in locales)) {
+      intl = locales[0];
+    }
+    store.setState({
+      intlLocale: intl,
+      intlMessages: locales[intl][1],
+    });
+  },
   setAuth: ({ auth }, newAuth) => store.setState({ auth: newAuth }),
 });
 

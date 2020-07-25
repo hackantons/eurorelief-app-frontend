@@ -1,10 +1,11 @@
 import React from 'react';
-import Navigation from '@comp/portal/Navigation';
-import Page from '@comp/portal/Page';
+import Navigation from '@comp/Portal/Navigation';
+import Page from '@comp/Portal/Page';
 import { Route } from 'react-router-dom';
 
 import './Portal.css';
 import { Message } from '@app/theme';
+import PushNotifications from '@comp/Portal/PushNotifications';
 
 const Portal = ({ className = '' }: { className?: string }) => (
   <div className={`${className} portal`}>
@@ -18,6 +19,7 @@ const Portal = ({ className = '' }: { className?: string }) => (
         <Message>Welcome back!</Message>
       </Route>
     </div>
+    <PushNotifications className="portal__push-button" />
   </div>
 );
 

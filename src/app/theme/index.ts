@@ -3,6 +3,7 @@ export { default as ButtonGroup } from './Button/ButtonGroup';
 export { default as Icon } from './Icon/Icon';
 export { default as Loader } from './Loader/Loader';
 export { default as Message } from './Message/Message';
+export { default as Modal } from './Modal/Modal';
 
 // Form
 
