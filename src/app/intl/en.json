@@ -1,6 +1,8 @@
 {
   "404.title": "404 Error",
   "404.content": "This Page could not be found",
+  "account.id": "ID: {id}",
+  "account.logout": "Logout",
   "form.validate.required": "This field is required",
   "tickets.loadingError": "There was an error loding the tickets",
   "language": "Language: {lang}",
@@ -8,7 +10,9 @@
   "login.number": "Phome-Number",
   "login.password": "Password",
   "login.submit": "Log In",
+  "login.error.account": "Account",
   "login.error.invalid": "Invalid number or password",
+  "navigation.account": "Account",
   "navigation.tickets": "Tickets",
   "navigation.notifications": "Notifications",
   "notification.date": "Date: {date}",

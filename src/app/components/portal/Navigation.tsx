@@ -26,7 +26,7 @@ const Navigation = ({ className = '' }: { className?: string }) => {
         >
           Camp
         </NavLink>
-        {['tickets', 'notifications'].map(type => (
+        {['tickets', 'notifications', 'account'].map(type => (
           <NavLink
             to={`/${type}/`}
             exact

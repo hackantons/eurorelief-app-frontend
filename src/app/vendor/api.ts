@@ -19,7 +19,7 @@ export const validateToken = (token: string) =>
   new Promise((resolve, reject) => {
     console.log('validateToken', token);
     if (token) {
-      wait().then(() => resolve({ id: '12345' }));
+      wait().then(() => resolve({ id: '05/1234567890' }));
     } else {
       reject();
     }

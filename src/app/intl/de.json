@@ -1,6 +1,8 @@
 {
   "404.title": "404 Error",
   "404.content": "Die Seite konnte nicht gefunden werden.",
+  "account.id": "ID: {id}",
+  "account.logout": "Logout",
   "form.validate.required": "Dies ist ein Pflichtfeld",
   "tickets.loadingError": "Es gab einen Fehler beim laden der Tickets",
   "language": "Sprache: {lang}",
@@ -9,6 +11,7 @@
   "login.password": "Passwort",
   "login.submit": "Anmelden",
   "login.error.invalid": "Ungültige Nummer oder Passwort",
+  "navigation.account": "Account",
   "navigation.tickets": "Tickets",
   "navigation.notifications": "Meldungen",
   "notification.date": "Datum: {date}",
