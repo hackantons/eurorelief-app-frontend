@@ -1,14 +1,21 @@
 .app {
   width: 100%;
   min-height: 100%;
+  max-width: var(--app-max-width);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  padding: var(--spacing);
 
-  &__login {
-    max-width: 400px;
-    padding-top: 10vh;
-    width: 90%;
-    align-self: center;
+  &__logo {
+  }
+
+  &__content {
+    margin-top: var(--spacing-page);
+    margin-bottom: var(--footer-height);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   &__footer {

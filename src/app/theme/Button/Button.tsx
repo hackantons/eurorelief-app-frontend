@@ -11,7 +11,7 @@ const Button = ({
   children,
   onClick,
   round = false,
-  white = false,
+  red = false,
   loading = false,
   ui = 'normal',
   icon,
@@ -21,7 +21,7 @@ const Button = ({
   children?: VNode | VNode[] | string;
   onClick?: Function;
   round?: boolean;
-  white?: boolean;
+  red?: boolean;
   icon?: string;
   loading?: boolean;
   ui?: 'normal' | 'none';
@@ -33,7 +33,7 @@ const Button = ({
         'button--icon': icon,
         'button--round': round,
         'button--has-text': children,
-        'button--bkg-white': white,
+        'button--bkg-red': red,
         'button--loading': loading,
       })}
       onClick={onClick ? () => onClick() : null}

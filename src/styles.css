@@ -3,23 +3,24 @@
   --spacing-half: 0.5rem;
   --spacing-page: 2.2rem;
 
-  --transition-speed: 200ms;
+  --transition-speed: 100ms;
 
   --c-p: #1d1d1b;
   --c-p-light: #5a667a;
   --c-h: #000;
-  --c-bkg: #eff5fd;
+  --c-bkg: #fff;
 
-  --c-primary: #4299e1;
-  --c-primary-dark: #2b6cb0;
+  --c-primary: #ce171f;
+  --c-primary-dark: #a01217;
 
   --c-feedback-error: #af1616;
 
-  --c-gray: #b9b8b8;
-  --c-gray-light: #f3f2f2;
+  --c-gray: #c7c8c9;
+  --c-gray-light: #d4d5d6;
   --c-gray-dark: #989898;
 
-  --portal-max-width: 800px;
+  --app-max-width: 800px;
+  --footer-height: 80px;
 
   --bp-phone: 330px;
   --bp-tablet: 600px;

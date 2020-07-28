@@ -11,13 +11,6 @@
       property="og:title"
       content="<%= htmlWebpackPlugin.options.title %>"
     />
-    <script id="httpsRedirect">
-      if (location.protocol !== 'https:') {
-        location.href =
-          'https:' +
-          window.location.href.substring(window.location.protocol.length);
-      }
-    </script>
   </head>
   <body>
     <div id="app"></div>

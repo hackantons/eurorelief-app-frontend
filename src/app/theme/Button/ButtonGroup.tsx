@@ -3,15 +3,15 @@ import React from 'react';
 import './ButtonGroup.css';
 
 const ButtonGroup = ({
-  className,
+  className = '',
   children,
   ...props
 }: {
-  className: string;
+  className?: string;
   children: any;
-  [k: string]: any;
+  [key: string]: any;
 }) => (
-  <div className={`.button-group ${className}`} {...props}>
+  <div className={`button-group ${className}`} {...props}>
     {children}
   </div>
 );
