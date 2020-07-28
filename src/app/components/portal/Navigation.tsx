@@ -6,6 +6,7 @@ import { State } from '@app/store/types';
 import { useStoreState } from 'unistore-hooks';
 
 import './Navigation.css';
+import Logo from '@app/theme/Logo/Logo';
 
 const Navigation = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
@@ -24,7 +25,7 @@ const Navigation = ({ className = '' }: { className?: string }) => {
           exact
           className="navigation__element navigation__element--home"
         >
-          Camp
+          <Logo logo="er-logo"></Logo>
         </NavLink>
         {['tickets', 'notifications', 'account'].map(type => (
           <NavLink

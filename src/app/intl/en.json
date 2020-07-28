@@ -3,6 +3,7 @@
   "404.content": "This Page could not be found",
   "account.id": "ID: {id}",
   "account.logout": "Logout",
+  "account.phone": "Current registered Phone Number {phone}",
   "form.validate.required": "This field is required",
   "tickets.loadingError": "There was an error loding the tickets",
   "language": "Language: {lang}",
@@ -18,5 +19,7 @@
   "notification.date": "Date: {date}",
   "push.title": "Push Notifications",
   "push.about": "Push Notifications allow you to recieve important informations about the camp or your tickets immediately. Press \"register\" and confirm the registration afterwards",
-  "push.register": "Register"
+  "push.register": "Register",
+  "settings.change": "change",
+  "settings.leave": "Left Lesvos"
 }

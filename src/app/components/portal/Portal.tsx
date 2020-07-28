@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 import './Portal.css';
 import { Message } from '@app/theme';
 import PushNotifications from '@comp/Portal/PushNotifications';
+import Settings from './Settings/Settings';
 
 const Portal = ({ className = '' }: { className?: string }) => (
   <div className={`${className} portal`}>
@@ -15,8 +16,8 @@ const Portal = ({ className = '' }: { className?: string }) => (
         <Page />
       </Route>
       <Route path="/" exact>
-        <h1>Home</h1>
-        <Message>Welcome back!</Message>
+        <h1>Hello</h1>
+        <Settings />
       </Route>
     </div>
     <PushNotifications className="portal__push-button" />
