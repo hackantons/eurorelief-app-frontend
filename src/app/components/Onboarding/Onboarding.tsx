@@ -5,12 +5,14 @@ import { useIntl } from 'react-intl';
 
 import './Onboarding.css';
 import DocumentType from '@comp/Onboarding/DocumentType';
+import ChooseKANumber from '@comp/Onboarding/ChooseKANumber';
 
 const Onboarding = ({ className = '' }: { className?: string }) => {
-  const [progress, setProgress] = React.useState<number>(0);
+  const [progress, setProgress] = React.useState<number>(2);
   const [documentType, setDocumentType] = React.useState<'paper' | 'ausweis'>(
     null
   );
+  const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(false);
   const { formatMessage } = useIntl();
 
   const saveSetProgress = (next: number) =>
@@ -27,7 +29,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
             className="onboarding__content"
           />
         ),
-        papers: <p>Test</p>,
+        papers: <ChooseKANumber setButtonDisabled={setButtonDisabled} />,
         phone: <p>Test</p>,
         install: <p>Test</p>,
         notification: <p>Test</p>,
@@ -47,6 +49,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
           onClick={() => saveSetProgress(progress + 1)}
           icon="mdi/chevron-down"
           red
+          disabled={buttonDisabled}
         >
           {formatMessage({
             id: `onboarding.progress.${

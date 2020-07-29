@@ -12,12 +12,21 @@ button {
     background-color: var(--c-gray);
   }
 
+  &:disabled {
+    pointer-events: none;
+    background-color: var(--c-gray-light);
+  }
+
   &--bkg-red {
     background-color: var(--c-primary);
     color: #fff;
 
     &:hover {
       background-color: var(--c-primary-dark);
+    }
+
+    &:disabled {
+      background-color: var(--c-primary-light);
     }
   }
 
@@ -84,10 +93,6 @@ button {
     .button__loader {
       opacity: 1;
     }
-  }
-
-  &:disabled {
-    pointer-events: none;
   }
 
   &--type-none {

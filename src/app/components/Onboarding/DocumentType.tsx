@@ -1,4 +1,8 @@
 import React from 'react';
+import { Button } from '@app/theme';
+import { useIntl } from 'react-intl';
+
+import './DocumentType.css';
 
 const DocumentType = ({
   className = '',
@@ -8,25 +12,39 @@ const DocumentType = ({
   className?: string;
   nextStep: Function;
   setDocumentType: Function;
-}) => (
-  <div className={`${className} document-type`}>
-    <button
-      onClick={() => {
-        setDocumentType('paper');
-        nextStep();
-      }}
-    >
-      Paper
-    </button>
-    <button
-      onClick={() => {
-        setDocumentType('ausweis');
-        nextStep();
-      }}
-    >
-      Ausweis
-    </button>
-  </div>
-);
+}) => {
+  const { formatMessage } = useIntl();
+  return (
+    <div className={`${className} document-type`}>
+      <p className="document-type__descr">
+        {formatMessage({ id: 'onboarding.document.descr' })}
+      </p>
+      <div className="document-type__element">
+        <Button
+          className="document-type__button"
+          onClick={() => {
+            setDocumentType('paper');
+            nextStep();
+          }}
+          red
+        >
+          {formatMessage({ id: 'onboarding.document.paper' })}
+        </Button>
+      </div>
+      <div className="document-type__element">
+        <Button
+          className="document-type__button"
+          onClick={() => {
+            setDocumentType('ausweis');
+            nextStep();
+          }}
+          red
+        >
+          {formatMessage({ id: 'onboarding.document.ausweis' })}
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 export default DocumentType;

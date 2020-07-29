@@ -11,6 +11,7 @@
   --c-bkg: #fff;
 
   --c-primary: #ce171f;
+  --c-primary-light: #ec5b61;
   --c-primary-dark: #a01217;
 
   --c-feedback-error: #af1616;
@@ -21,6 +22,8 @@
 
   --app-max-width: 800px;
   --footer-height: 80px;
+
+  --form-input-border-radius: 6px;
 
   --bp-phone: 330px;
   --bp-tablet: 600px;

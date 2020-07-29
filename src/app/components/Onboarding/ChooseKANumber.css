@@ -1,0 +1,37 @@
+.choose-kanumber {
+  &__input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: var(--form-input-border-radius);
+    border: 1px solid var(--c-gray-light);
+  }
+
+  &__input-prefix,
+  &__input-number {
+    border: none;
+    padding: 0.8em 1em;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    }
+  }
+
+  &__input-prefix {
+    width: 45px;
+    border-top-left-radius: var(--form-input-border-radius);
+    border-bottom-left-radius: var(--form-input-border-radius);
+    padding: 0.8em 0.8em 0.8em 1em;
+  }
+
+  &__input-number {
+    width: 100%;
+    border-top-right-radius: var(--form-input-border-radius);
+    border-bottom-right-radius: var(--form-input-border-radius);
+    padding: 0.8em 1em 0.8em 0.8em;
+  }
+
+  &__input-devider {
+    margin: 0 0.2rem;
+  }
+}

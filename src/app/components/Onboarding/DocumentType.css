@@ -1,0 +1,15 @@
+.document-type {
+  justify-content: flex-start;
+  &__descr {
+    margin: var(--spacing) 0 var(--spacing-page) 0;
+  }
+
+  &__element {
+    text-align: center;
+    margin-top: var(--spacing);
+  }
+
+  &__button {
+    display: inline-block;
+  }
+}
