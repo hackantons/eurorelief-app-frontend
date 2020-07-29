@@ -2,7 +2,8 @@
   "404.title": "404 Error",
   "404.content": "Die Seite konnte nicht gefunden werden.",
   "account.id": "ID: {id}",
-  "account.logout": "Logout",
+  "account.logout": "Abmelden",
+  "account.phone": "Aktuell registrierte Telefon Nummer: {phone}",
   "form.validate.required": "Dies ist ein Pflichtfeld",
   "tickets.loadingError": "Es gab einen Fehler beim laden der Tickets",
   "language": "Sprache: {lang}",
@@ -26,5 +27,7 @@
   "onboarding.progress.done": "Done",
   "push.title": "Push Notifications",
   "push.about": "Push Notifications allow you to recieve important informations about the camp or your tickets immediately. Press \"register\" and confirm the registration afterwards",
-  "push.register": "Registrieren"
+  "push.register": "Registrieren",
+  "settings.change": "ändern",
+  "settings.leave": "Lesvos verlassen"
 }
