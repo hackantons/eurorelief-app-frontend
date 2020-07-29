@@ -5,6 +5,7 @@
   "account.logout": "Abmelden",
   "account.phone": "Aktuell registrierte Telefon Nummer: {phone}",
   "form.validate.required": "Dies ist ein Pflichtfeld",
+  "general.error": "An unexpected error occured",
   "tickets.loadingError": "Es gab einen Fehler beim laden der Tickets",
   "language": "Sprache: {lang}",
   "language.change": "Sprache ändern",

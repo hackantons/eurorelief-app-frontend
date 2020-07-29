@@ -3,6 +3,7 @@ import { Button } from '@app/theme';
 import { useIntl } from 'react-intl';
 
 import './DocumentType.css';
+import { DOCUMENT_TYPES } from '@app/vendor/constants';
 
 const DocumentType = ({
   className = '',
@@ -23,7 +24,7 @@ const DocumentType = ({
         <Button
           className="document-type__button"
           onClick={() => {
-            setDocumentType('paper');
+            setDocumentType(DOCUMENT_TYPES.PAPER);
             nextStep();
           }}
           red
@@ -35,7 +36,7 @@ const DocumentType = ({
         <Button
           className="document-type__button"
           onClick={() => {
-            setDocumentType('ausweis');
+            setDocumentType(DOCUMENT_TYPES.AUSWEIS);
             nextStep();
           }}
           red

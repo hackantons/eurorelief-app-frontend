@@ -70,3 +70,14 @@ export const getTickets = () =>
       ])
     )
   );
+
+export const checkKANumber = (number: string): Promise<string> =>
+  new Promise((resolve, reject) =>
+    wait(500).then(() => {
+      if (number === '00/000000') {
+        reject('invalid');
+      } else {
+        resolve('aeec2188-5f15-43e1-9f26-cb39f65fc902');
+      }
+    })
+  );

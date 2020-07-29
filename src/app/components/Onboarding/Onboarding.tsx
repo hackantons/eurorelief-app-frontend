@@ -8,10 +8,8 @@ import DocumentType from '@comp/Onboarding/DocumentType';
 import ChooseKANumber from '@comp/Onboarding/ChooseKANumber';
 
 const Onboarding = ({ className = '' }: { className?: string }) => {
-  const [progress, setProgress] = React.useState<number>(2);
-  const [documentType, setDocumentType] = React.useState<'paper' | 'ausweis'>(
-    null
-  );
+  const [progress, setProgress] = React.useState<number>(0);
+  const [documentType, setDocumentType] = React.useState<string>(null);
   const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(false);
   const { formatMessage } = useIntl();
 
@@ -29,12 +27,17 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
             className="onboarding__content"
           />
         ),
-        papers: <ChooseKANumber setButtonDisabled={setButtonDisabled} />,
+        papers: (
+          <ChooseKANumber
+            setButtonDisabled={setButtonDisabled}
+            documentType={documentType}
+          />
+        ),
         phone: <p>Test</p>,
         install: <p>Test</p>,
         notification: <p>Test</p>,
       }),
-    []
+    [documentType]
   );
 
   const activeStep = React.useMemo(() => steps[progress], [steps, progress]);

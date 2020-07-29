@@ -1,3 +1,11 @@
+input {
+  /* resets */
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
 .input {
   width: 100%;
   position: relative;
@@ -44,47 +52,4 @@
     bottom: -0.5em;
     transform: translateY(100%);
   }
-
-  /*
-
-
-
-  &__element {
-    display: block;
-    width: 100%;
-    border-radius: 4px;
-    border: 1.5px solid var(--c-gray-light);
-    padding: 0.5em 0.8em;
-    outline: none;
-    height: auto;
-    font-size: 100%;
-    @mixin transition all, 200ms;
-
-    &:hover {
-      border-color: var(--c-gray-dark);
-    }
-
-    &:focus {
-    }
-  }
-
-  &__label {
-  }
-
-  &__error {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    transform: translateY(1.1em) scale(0.7);
-    color: var(--c-feedback-error);
-  }
-
-  &--select {
-    .input {
-      &__element {
-        appearance: none;
-        //line-height: 160%;
-      }
-    }
-  }*/
 }
