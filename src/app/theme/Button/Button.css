@@ -6,12 +6,25 @@ button {
   cursor: pointer;
   @mixin box-shadow;
 
-  background-color: var(--c-primary);
-  color: #fff;
-  padding: 0.8em;
+  background-color: var(--c-gray-light);
+
+  &:hover {
+    background-color: var(--c-gray);
+  }
+
+  &--bkg-red {
+    background-color: var(--c-primary);
+    color: #fff;
+
+    &:hover {
+      background-color: var(--c-primary-dark);
+    }
+  }
+
+  padding: 1em;
 
   &--has-text {
-    padding: 0.8em 1em;
+    padding: 1em 1.2em;
   }
 
   font-weight: bold;
@@ -20,10 +33,6 @@ button {
   display: flex;
   align-items: center;
   position: relative;
-
-  &:hover {
-    background-color: var(--c-primary-dark);
-  }
 
   &__text {
     display: inline-block;

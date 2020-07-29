@@ -1,6 +1,3 @@
 .push-notifications-button {
-  position: fixed;
-  bottom: var(--spacing-half);
-  right: var(--spacing-half);
   font-size: 1.3rem;
 }

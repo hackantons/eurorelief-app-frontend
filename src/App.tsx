@@ -13,9 +13,11 @@ import './App.css';
 import { store, actions } from '@app/store';
 import { State } from '@app/store/types';
 import { validateToken } from '@app/vendor/api';
-import LogIn from '@comp/Login/LogIn';
+import Onboarding from '@comp/Onboarding/Onboarding';
 import Portal from '@comp/Portal/Portal';
 import Footer from '@comp/Footer/Footer';
+import Logo from '@comp/Logo';
+import Navigation from '@comp/Portal/Navigation';
 
 const App = () => {
   const [init, setInit] = useState<boolean>(false);
@@ -43,20 +45,21 @@ const App = () => {
 
   useEffect(() => {
     updateNotifications();
-  });
+  }, []);
 
   return (
     <IntlProvider locale={intlLocale} messages={intlMessages}>
       <div className="app">
+        <Logo className="app__logo" />
         {init ? (
-          <React.Fragment>
-            {auth ? (
-              <Portal className="app__portal" />
-            ) : (
-              <LogIn className="app__login" setAuth={setAuth} />
-            )}
-            <Footer className="app__footer" />
-          </React.Fragment>
+          auth ? (
+            <React.Fragment>
+              <Portal className="app__content app__content--portal" />
+              <Navigation className="app__footer" />
+            </React.Fragment>
+          ) : (
+            <Onboarding className="app__content app__content--onboarding" />
+          )
         ) : (
           <Loader className="app__loader" />
         )}

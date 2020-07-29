@@ -1,0 +1,8 @@
+.choose-language {
+  text-align: center;
+  padding-bottom: 5vh;
+
+  &__lang {
+    margin: 2.5vh auto;
+  }
+}

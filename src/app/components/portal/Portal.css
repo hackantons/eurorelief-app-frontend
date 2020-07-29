@@ -16,4 +16,16 @@
       margin-top: var(--spacing-half);
     }
   }
+
+  &__push-button,
+  &__a2h-button {
+    position: fixed;
+    bottom: var(--spacing-half);
+    right: var(--spacing-half);
+  }
+
+  &__a2h-button {
+    right: auto;
+    left: var(--spacing-half);
+  }
 }

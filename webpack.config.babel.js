@@ -10,6 +10,9 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
+import { InjectManifest } from 'workbox-webpack-plugin';
+import WebpackPwaManifest from 'webpack-pwa-manifest';
+
 module.exports = (env, argv) => {
   const dirDist = path.resolve(__dirname, 'dist');
   const dirSrc = path.resolve(__dirname, 'src');
@@ -75,9 +78,32 @@ module.exports = (env, argv) => {
               useShortDoctype: true,
             },
       }),
-      new DefinePlugin({
-        'process.env.GMAPS_KEY': JSON.stringify(process.env.GMAPS_KEY),
-      }),
+      ...(!dev // only generate manifest and SW in prod build
+        ? [
+            new WebpackPwaManifest({
+              name: app.title,
+              short_name: app.short,
+              description: app.description,
+              theme_color: app.color,
+              background_color: app.colorbkg,
+              crossorigin: 'use-credentials',
+              fingerprints: false,
+              icons: [
+                {
+                  src: path.resolve(`${dirSrc}/static/img/logo.png`),
+                  sizes: [96, 128, 192, 256, 384, 512],
+                  destination: path.join('assets', 'icon'),
+                  ios: true,
+                },
+              ],
+            }),
+            new InjectManifest({
+              swSrc: './src/service-worker.js',
+              include: [/\.html$/, /\.js$/, /\.css$/],
+              maximumFileSizeToCacheInBytes: 5000000,
+            }),
+          ]
+        : []),
     ],
     module: {
       rules: [
