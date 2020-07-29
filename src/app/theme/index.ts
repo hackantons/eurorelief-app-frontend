@@ -2,6 +2,7 @@ export { default as Button } from './Button/Button';
 export { default as ButtonGroup } from './Button/ButtonGroup';
 export { default as Icon } from './Icon/Icon';
 export { default as Loader } from './Loader/Loader';
+export { default as Logo } from './Logo/Logo';
 export { default as Message } from './Message/Message';
 export { default as Modal } from './Modal/Modal';
 

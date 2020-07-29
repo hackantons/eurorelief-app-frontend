@@ -90,7 +90,7 @@ module.exports = (env, argv) => {
               fingerprints: false,
               icons: [
                 {
-                  src: path.resolve(`${dirSrc}/static/img/logo.png`),
+                  src: path.resolve(`${dirSrc}/static/logos/er-favicon.png`),
                   sizes: [96, 128, 192, 256, 384, 512],
                   destination: path.join('assets', 'icon'),
                   ios: true,

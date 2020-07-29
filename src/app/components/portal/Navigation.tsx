@@ -25,7 +25,7 @@ const Navigation = ({ className = '' }: { className?: string }) => {
           exact
           className="navigation__element navigation__element--home"
         >
-          <Logo logo="er-logo"></Logo>
+          <Logo />
         </NavLink>
         {['tickets', 'notifications', 'account'].map(type => (
           <NavLink

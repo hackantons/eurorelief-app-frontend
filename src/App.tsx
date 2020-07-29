@@ -16,7 +16,7 @@ import { validateToken } from '@app/vendor/api';
 import Onboarding from '@comp/Onboarding/Onboarding';
 import Portal from '@comp/Portal/Portal';
 import Footer from '@comp/Footer/Footer';
-import Logo from '@comp/Logo';
+import { Logo } from '@app/theme';
 import Navigation from '@comp/Portal/Navigation';
 
 const App = () => {
