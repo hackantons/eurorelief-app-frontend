@@ -1,0 +1,5 @@
+.choose-phone {
+  & > * + * {
+    margin-top: var(--spacing-page);
+  }
+}

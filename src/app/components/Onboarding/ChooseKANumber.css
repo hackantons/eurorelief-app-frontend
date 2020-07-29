@@ -1,8 +1,6 @@
 .choose-kanumber {
-  margin-top: var(--spacing-page);
-
   & > * + * {
-    margin-top: var(--spacing);
+    margin-top: var(--spacing-page);
   }
 
   &__input {

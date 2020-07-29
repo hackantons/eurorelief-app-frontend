@@ -1,9 +1,10 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import './ChooseKANumber.css';
 import { Icon, Loader, Message } from '@app/theme';
 import { checkKANumber } from '@app/vendor/api';
+
+import './ChooseKANumber.css';
 
 const MAX_NUMBER = 6;
 const FORM_STATES = {
@@ -17,10 +18,12 @@ const ChooseKANumber = ({
   className = '',
   setButtonDisabled,
   documentType,
+  setId,
 }: {
   className?: string;
   setButtonDisabled: Function;
   documentType: string;
+  setId: Function;
 }) => {
   const { formatMessage } = useIntl();
   const [prefix, setPrefix] = React.useState<string>('05');
@@ -41,7 +44,10 @@ const ChooseKANumber = ({
     if (prefix.length === 2 && number.length === MAX_NUMBER) {
       setFormState(FORM_STATES.PENDING);
       checkKANumber(`${prefix}/${number}`)
-        .then(() => setFormState(FORM_STATES.SUCCESS))
+        .then(id => {
+          setFormState(FORM_STATES.SUCCESS);
+          setId(id);
+        })
         .catch(error => {
           setFormError(error);
           setFormState(FORM_STATES.ERROR);

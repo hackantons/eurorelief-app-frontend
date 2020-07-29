@@ -1,13 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-
-import './Settings.css';
-import { State } from '@app/store/types';
 import { useStoreState, useActions } from 'unistore-hooks';
-import { settingsDB } from '@app/store/idb';
 
+import { State } from '@app/store/types';
+import { settingsDB } from '@app/store/idb';
 import { Button } from '@app/theme';
 import { actions } from '@app/store';
+
+import './Settings.css';
 
 const Settings = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();

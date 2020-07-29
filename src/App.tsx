@@ -5,19 +5,15 @@ import { Provider, useStoreState, useActions } from 'unistore-hooks';
 import { HashRouter } from 'react-router-dom';
 
 import { Loader } from '@app/theme';
-
 import { settingsDB } from '@app/store/idb';
-
-import './App.css';
-
 import { store, actions } from '@app/store';
 import { State } from '@app/store/types';
 import { validateToken } from '@app/vendor/api';
 import Onboarding from '@comp/Onboarding/Onboarding';
 import Portal from '@comp/Portal/Portal';
-import Footer from '@comp/Footer/Footer';
 import { Logo } from '@app/theme';
-import Navigation from '@comp/Portal/Navigation';
+
+import './App.css';
 
 const App = () => {
   const [init, setInit] = useState<boolean>(false);
@@ -55,7 +51,6 @@ const App = () => {
           auth ? (
             <React.Fragment>
               <Portal className="app__content app__content--portal" />
-              <Navigation className="app__footer" />
             </React.Fragment>
           ) : (
             <Onboarding className="app__content app__content--onboarding" />

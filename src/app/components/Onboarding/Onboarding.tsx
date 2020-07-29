@@ -2,19 +2,34 @@ import React from 'react';
 import { Button } from '@app/theme';
 import ChooseLanguage from '@comp/Onboarding/ChooseLanguage';
 import { useIntl } from 'react-intl';
+import { useActions } from 'unistore-hooks';
 
-import './Onboarding.css';
+import { actions } from '@app/store';
+import { AuthObject } from '@app/store/types';
 import DocumentType from '@comp/Onboarding/DocumentType';
 import ChooseKANumber from '@comp/Onboarding/ChooseKANumber';
+import ChoosePhone from '@comp/Onboarding/ChoosePhone';
+import Install from '@comp/Onboarding/Install';
+import PushNotifications from '@comp/Onboarding/PushNotifications';
+
+import './Onboarding.css';
 
 const Onboarding = ({ className = '' }: { className?: string }) => {
   const [progress, setProgress] = React.useState<number>(0);
   const [documentType, setDocumentType] = React.useState<string>(null);
+  const [id, setId] = React.useState<string>(null);
   const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(false);
+  const [auth, setAuth] = React.useState<AuthObject>(null);
   const { formatMessage } = useIntl();
+  const { setAuth: setStoreAuth } = useActions(actions);
 
-  const saveSetProgress = (next: number) =>
-    setProgress(next >= steps.length ? steps.length - 1 : next);
+  const saveSetProgress = (next: number) => {
+    if (next >= steps.length) {
+      setStoreAuth(auth);
+    } else {
+      setProgress(next >= steps.length ? steps.length - 1 : next);
+    }
+  };
 
   const steps = React.useMemo(
     () =>
@@ -31,11 +46,29 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
           <ChooseKANumber
             setButtonDisabled={setButtonDisabled}
             documentType={documentType}
+            className="onboarding__content"
+            setId={setId}
           />
         ),
-        phone: <p>Test</p>,
-        install: <p>Test</p>,
-        notification: <p>Test</p>,
+        phone: (
+          <ChoosePhone
+            className="onboarding__content"
+            setAuth={setAuth}
+            id={id}
+          />
+        ),
+        install: (
+          <Install
+            className="onboarding__content"
+            nextStep={() => saveSetProgress(5)}
+          />
+        ),
+        notification: (
+          <PushNotifications
+            className="onboarding__content"
+            nextStep={() => saveSetProgress(6)}
+          />
+        ),
       }),
     [documentType]
   );
