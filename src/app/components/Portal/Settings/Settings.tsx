@@ -5,13 +5,14 @@ import { useStoreState, useActions } from 'unistore-hooks';
 import { State } from '@app/store/types';
 import { Button, ButtonGroup } from '@app/theme';
 import { actions } from '@app/store';
+import { settingsDB } from '@app/store/idb';
 
 import './Settings.css';
 
 const Settings = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
   const { identity }: State = useStoreState(['identity']);
-  const { setAuth } = useActions(actions);
+  const { setIdentity } = useActions(actions);
 
   return (
     <div className={`${className} settings`}>
@@ -43,6 +44,14 @@ const Settings = ({ className = '' }: { className?: string }) => {
         >
           {formatMessage({ id: 'settings.leave' })}
         </Button>
+        <button
+          onClick={() => {
+            settingsDB.set('jwt', '');
+            setIdentity(null);
+          }}
+        >
+          logout
+        </button>
       </ButtonGroup>
     </div>
   );
