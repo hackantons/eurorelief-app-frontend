@@ -21,6 +21,7 @@
     "preact": "^10.4.4",
     "qrcode-generator": "^1.4.4",
     "qrcode.react": "^1.0.0",
+    "react": "^16.13.1",
     "react-hook-form": "^5.7.2",
     "react-intl": "^4.5.3",
     "unistore": "^3.5.1",
