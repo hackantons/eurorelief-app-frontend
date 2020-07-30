@@ -16,6 +16,7 @@
   }
 
   &__progress {
+    display: flex;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -23,11 +24,10 @@
     width: 100%;
     border-radius: 0;
     height: var(--footer-height);
-    flex-direction: row-reverse;
     font-size: calc(var(--footer-height) / 3);
 
-    .button__text {
-      margin-right: auto;
+    button {
+      flex: 1;
     }
 
     &.button.button--has-text {
@@ -43,3 +43,22 @@
     }
   }
 }
+
+.progress-button {
+  display: flex;
+  justify-content: space-between;
+
+  &--forward {
+    .icon {
+      transform: rotate(-90deg) scale(2);
+      order:2;
+    }
+  }
+
+  &--back {
+    .icon {
+      transform: rotate(90deg) scale(2);
+    }
+  }
+}
+

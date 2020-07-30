@@ -79,25 +79,39 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
     <div className={`${className} onboarding onboarding--${activeStep[0]}`}>
       <h1>{formatMessage({ id: 'onboarding.title.' + activeStep[0] })}</h1>
       {activeStep[1]}
-      {progress !== 1 && (
-        <Button
-          className="onboarding__progress"
-          onClick={() => saveSetProgress(progress + 1)}
-          icon="mdi/chevron-down"
-          red
-          disabled={buttonDisabled}
-        >
-          {formatMessage({
-            id: `onboarding.progress.${
-              progress === 0
-                ? 'start'
-                : progress === steps.length - 1
-                ? 'done'
-                : 'next'
-            }`,
-          })}
-        </Button>
-      )}
+      <div className="onboarding__progress">
+        {(progress === 1 || progress === 2) && (
+          <Button
+            className="progress-button progress-button--back"
+            onClick={() => saveSetProgress(progress - 1)}
+            icon="mdi/chevron-down"
+            red
+          >
+            {formatMessage({
+              id: `onboarding.progress.back`,
+            })}
+          </Button>
+        )}
+         {progress !== 1 && (
+          <Button
+            className="progress-button progress-button--forward"
+            onClick={() => saveSetProgress(progress + 1)}
+            icon="mdi/chevron-down"
+            red
+            disabled={buttonDisabled}
+          >
+            {formatMessage({
+              id: `onboarding.progress.${
+                progress === 0
+                  ? 'start'
+                  : progress === steps.length - 1
+                  ? 'done'
+                  : 'next'
+              }`,
+            })}
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

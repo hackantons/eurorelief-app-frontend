@@ -28,6 +28,7 @@
   "onboarding.title.install": "Install Eurorelief App",
   "onboarding.title.notification": "Turn on Noifications",
   "onboarding.progress.start": "Start",
+  "onboarding.progress.back": "Zurück",
   "onboarding.progress.next": "Next",
   "onboarding.progress.done": "Done",
   "push.title": "Push Notifications",
