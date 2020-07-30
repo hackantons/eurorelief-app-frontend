@@ -1,7 +1,11 @@
 {
   "name": "refugee-camp-frontend",
-  "author": "Nico Martin - https://nico.dev",
-  "license": "GPL-3.0+",
+  "author": {
+    "name": "Nico Martin",
+    "email": "mail@nicomartin.ch",
+    "url": "https://nico.dev"
+  },
+  "license": "MIT",
   "version": "1.0.0",
   "description": "A Progressive Web App for refugee camps",
   "scripts": {
