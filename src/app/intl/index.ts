@@ -20,4 +20,11 @@ export const locales: IntlLocales = {
   // @ts-ignore
   fa: ['ar', arMessages.default, 'عربى'],
 };
-export const defaultLocale: string = Object.keys(locales)[0];
+
+let language = "en"
+
+// returns shortcode like de en or ar
+const browserLanguage = navigator.language.split("-")[0]
+if(Object.keys(locales).includes(browserLanguage)) language = browserLanguage
+
+export const defaultLocale: string = language;
