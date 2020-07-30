@@ -1,6 +1,6 @@
 import { openDB, DBSchema } from 'idb';
 
-const dbName = 'refugee-camp';
+const dbName = 'euro-relief-pwa';
 
 interface SettingsDBSchema extends DBSchema {
   settings: {

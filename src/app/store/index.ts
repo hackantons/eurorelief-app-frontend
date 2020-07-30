@@ -1,16 +1,16 @@
 import { defaultLocale, locales } from '../intl';
 import { isDev } from '../vendor/helpers';
-import { State } from '@app/store/types';
+import { Identity, State } from '@app/store/types';
 
 import createStore, { Store } from 'unistore';
 import devtools from 'unistore/devtools';
-import { settingsDB } from '@app/store/idb';
+//import { settingsDB } from '@app/store/idb';
 import { getNotifications } from '@app/vendor/api';
 
 const initialState: State = {
   intlLocale: defaultLocale,
   intlMessages: locales[defaultLocale][1],
-  auth: false,
+  identity: null,
   notifications: [],
 };
 
@@ -24,7 +24,7 @@ export const actions = (store: Store<State>) => ({
       intlMessages: locales[intl][1],
     });
   },
-  setAuth: ({ auth }, newAuth) => store.setState({ auth: newAuth }),
+  setIdentity: (state, identity: Identity) => store.setState({ identity }),
   updateNotifications: () =>
     getNotifications().then(notifications => {
       // @ts-ignore

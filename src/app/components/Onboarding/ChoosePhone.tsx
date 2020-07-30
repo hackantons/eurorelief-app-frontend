@@ -7,11 +7,11 @@ import { settingsDB } from '@app/store/idb';
 
 const ChoosePhone = ({
   className = '',
-  setAuth,
+  setIdentity,
   id,
 }: {
   className?: string;
-  setAuth: Function;
+  setIdentity: Function;
   id: string;
 }) => {
   const [phone, setPhone] = React.useState<string>('');
@@ -21,8 +21,8 @@ const ChoosePhone = ({
     /**
      * This ist just a mock. Auth should be set after phone number + id set to the DB
      */
-    setAuth({ id });
-    settingsDB.set('jwt', 'aeec2188-5f15-43e1-9f26-cb39f65fc902');
+    setIdentity({ id, phone: '123456789' });
+    settingsDB.set('jwt', 'JWT.aeec2188-5f15-43e1-9f26-cb39f65fc902');
   }, []);
 
   return (

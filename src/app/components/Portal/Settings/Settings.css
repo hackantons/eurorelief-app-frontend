@@ -1,2 +1,5 @@
 .settings {
+  & > * + * {
+    margin-top: var(--spacing);
+  }
 }

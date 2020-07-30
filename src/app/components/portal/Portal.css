@@ -1,31 +1,5 @@
 .portal {
-  &__header {
-    @mixin box-shadow;
-    background-color: #fff;
-    position: sticky;
-    top: 0;
-  }
-
-  &__content {
-    max-width: var(--portal-max-width);
-    width: 100%;
-    margin: 0 auto;
-    padding: var(--spacing);
-
-    & > * + * {
-      margin-top: var(--spacing-half);
-    }
-  }
-
-  &__push-button,
-  &__a2h-button {
-    position: fixed;
-    bottom: var(--spacing-half);
-    right: var(--spacing-half);
-  }
-
-  &__a2h-button {
-    right: auto;
-    left: var(--spacing-half);
+  & > * + * {
+    margin-top: var(--spacing-page);
   }
 }

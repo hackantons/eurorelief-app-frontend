@@ -43,13 +43,13 @@ const ChooseKANumber = ({
   React.useEffect(() => {
     if (prefix.length === 2 && number.length === MAX_NUMBER) {
       setFormState(FORM_STATES.PENDING);
-      checkKANumber(`${prefix}/${number}`)
+      checkKANumber(`${prefix}/${number}`, formatMessage)
         .then(id => {
           setFormState(FORM_STATES.SUCCESS);
           setId(id);
         })
         .catch(error => {
-          setFormError(error);
+          setFormError(error.message);
           setFormState(FORM_STATES.ERROR);
         });
     } else {

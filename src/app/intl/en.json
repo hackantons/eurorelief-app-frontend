@@ -26,6 +26,7 @@
   "onboarding.number.step1.paper": "Find the 8th row called A.K.A",
   "onboarding.number.step1.ausweis": "?? Find the 8th row called A.K.A",
   "onboarding.number.step2": "Type in that number",
+  "onboarding.number.invalid": "Invalid number",
   "onboarding.phone.desc": "Fill in your phone number",
   "onboarding.phone.label": "Cellphone Number",
   "onboarding.push.activate": "Activate",
@@ -41,6 +42,8 @@
   "push.title": "Push Notifications",
   "push.about": "Push Notifications allow you to recieve important informations about the camp or your tickets immediately. Press \"register\" and confirm the registration afterwards",
   "push.register": "Register",
+  "portal.title": "Hello",
   "settings.change": "change",
-  "settings.leave": "Left Lesvos"
+  "settings.leave": "Left Lesvos",
+  "settings.noPhone": "Not set"
 }

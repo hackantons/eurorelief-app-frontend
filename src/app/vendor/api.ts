@@ -1,25 +1,37 @@
 import { wait } from '@app/vendor/helpers';
+import { Identity } from '@app/store/types';
+import { settingsDB } from '@app/store/idb';
 
-export const logIn = ({ tel, password }: { tel: string; password: string }) =>
+const mockedIdentity: Identity = {
+  id: '12345',
+  phone: '789456123',
+};
+
+export const logIn = ({
+  tel,
+  password,
+}: {
+  tel: string;
+  password: string;
+}): Promise<Identity> =>
   new Promise((resolve, reject) => {
-    console.log('logIn', tel, password);
     wait().then(() => {
       if (tel === '1234' && password === 'test') {
-        resolve({
-          jwt: 'JWT.Loremipsumdolorsitametconsetetursadipscingelitr',
-          id: '12345',
-        });
+        settingsDB.set(
+          'jwt',
+          'JWT.Loremipsumdolorsitametconsetetursadipscingelitr'
+        );
+        resolve(mockedIdentity);
       } else {
         reject();
       }
     });
   });
 
-export const validateToken = (token: string) =>
+export const validateToken = (token: string): Promise<Identity> =>
   new Promise((resolve, reject) => {
-    console.log('validateToken', token);
     if (token) {
-      wait().then(() => resolve({ id: '05/1234567890' }));
+      wait().then(() => resolve(mockedIdentity));
     } else {
       reject();
     }
@@ -71,11 +83,11 @@ export const getTickets = () =>
     )
   );
 
-export const checkKANumber = (number: string): Promise<string> =>
+export const checkKANumber = (number: string, formatMessage): Promise<string> =>
   new Promise((resolve, reject) =>
     wait(500).then(() => {
       if (number === '00/000000') {
-        reject(new Error());
+        reject(new Error(formatMessage({ id: 'onboarding.number.invalid' })));
       } else {
         resolve('aeec2188-5f15-43e1-9f26-cb39f65fc902');
       }

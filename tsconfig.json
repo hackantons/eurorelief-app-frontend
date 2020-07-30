@@ -17,7 +17,11 @@
       "react": ["node_modules/preact/compat"],
       "react-dom": ["node_modules/preact/compat"]
     },
-    "typeRoots": ["node_modules/@types", "src/app/@types"]
+    "typeRoots": [
+      "node_modules/@types",
+      "src/app/@types",
+      "src/app/@types/global.d.ts"
+    ]
   },
   "include": ["./**/*.tsx", "./**/*.ts", "./**/*.d.ts"]
 }

@@ -1,14 +1,15 @@
 import { IntlMessages } from '@app/intl/types';
 import { Notification } from '@comp/Portal/Notifications/types';
 
-export interface AuthObject {
+export interface Identity {
   id: string;
+  phone: string;
 }
 
 export interface State {
   intlLocale: string;
   intlMessages: IntlMessages;
-  auth: false | AuthObject;
+  identity: Identity;
   notifications: Array<Notification>;
 }
 

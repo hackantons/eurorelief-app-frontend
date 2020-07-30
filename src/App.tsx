@@ -16,27 +16,27 @@ import { Logo } from '@app/theme';
 import './App.css';
 
 const App = () => {
-  const [init, setInit] = useState<boolean>(false);
+  const [appInit, setAppInit] = useState<boolean>(false);
 
-  const { intlLocale, intlMessages, auth }: State = useStoreState([
+  const { intlLocale, intlMessages, identity }: State = useStoreState([
     'intlLocale',
     'intlMessages',
-    'auth',
+    'identity',
   ]);
-  const { setAuth, updateNotifications } = useActions(actions);
+  const { setIdentity, updateNotifications } = useActions(actions);
 
   useEffect(() => {
     settingsDB
       .get('jwt')
       .then((jwt: string) =>
         validateToken(jwt)
-          .then(auth => {
-            setAuth(auth);
-            setInit(true);
+          .then(identity => {
+            setIdentity(identity);
+            setAppInit(true);
           })
-          .catch(() => setInit(true))
+          .catch(() => setAppInit(true))
       )
-      .catch(() => setInit(true));
+      .catch(() => setAppInit(true));
   }, []);
 
   useEffect(() => {
@@ -47,11 +47,9 @@ const App = () => {
     <IntlProvider locale={intlLocale} messages={intlMessages}>
       <div className="app">
         <Logo className="app__logo" />
-        {init ? (
-          auth ? (
-            <React.Fragment>
-              <Portal className="app__content app__content--portal" />
-            </React.Fragment>
+        {appInit ? (
+          identity ? (
+            <Portal className="app__content app__content--portal" />
           ) : (
             <Onboarding className="app__content app__content--onboarding" />
           )

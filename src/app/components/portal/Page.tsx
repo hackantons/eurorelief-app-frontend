@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Page404 from '@comp/Portal/Page404';
 import NotificationsPage from '@comp/Portal/Notifications/Page';
-import AccountPage from '@comp/Portal/Account/Page';
 import TicketsPage from '@comp/Portal/Tickets/Page';
 
 import './Page.css';
@@ -15,8 +14,6 @@ const Page = ({ className = '' }: { className?: string }) => {
       return <TicketsPage className="page" />;
     case 'notifications':
       return <NotificationsPage className="page" />;
-    case 'account':
-      return <AccountPage className="page" />;
     default:
       return <Page404 className="page" />;
   }

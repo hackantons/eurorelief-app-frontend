@@ -16,7 +16,7 @@ const Install = ({
   const { formatMessage } = useIntl();
   React.useEffect(() => {
     // @ts-ignore
-    //!window.installPrompt && nextStep();
+    !window.installPrompt && nextStep();
   }, []);
   return (
     <div className={`${className} install`}>

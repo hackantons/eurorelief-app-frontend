@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import { useActions } from 'unistore-hooks';
 
 import { actions } from '@app/store';
-import { AuthObject } from '@app/store/types';
+import { Identity } from '@app/store/types';
 import DocumentType from '@comp/Onboarding/DocumentType';
 import ChooseKANumber from '@comp/Onboarding/ChooseKANumber';
 import ChoosePhone from '@comp/Onboarding/ChoosePhone';
@@ -19,13 +19,13 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
   const [documentType, setDocumentType] = React.useState<string>(null);
   const [id, setId] = React.useState<string>(null);
   const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(false);
-  const [auth, setAuth] = React.useState<AuthObject>(null);
+  const [identity, setIdentity] = React.useState<Identity>(null);
   const { formatMessage } = useIntl();
-  const { setAuth: setStoreAuth } = useActions(actions);
+  const { setIdentity: setStoreIdentity } = useActions(actions);
 
   const saveSetProgress = (next: number) => {
     if (next >= steps.length) {
-      setStoreAuth(auth);
+      setStoreIdentity(identity);
     } else {
       setProgress(next >= steps.length ? steps.length - 1 : next);
     }
@@ -53,7 +53,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
         phone: (
           <ChoosePhone
             className="onboarding__content"
-            setAuth={setAuth}
+            setIdentity={setIdentity}
             id={id}
           />
         ),
