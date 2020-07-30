@@ -52,12 +52,19 @@
     .icon {
       transform: rotate(-90deg) scale(2);
       order:2;
+      .ar & {
+        transform: rotate(90deg) scale(2);
+      }
     }
+
   }
 
   &--back {
     .icon {
       transform: rotate(90deg) scale(2);
+      .ar & {
+        transform: rotate(-90deg) scale(2);
+      }
     }
   }
 }
