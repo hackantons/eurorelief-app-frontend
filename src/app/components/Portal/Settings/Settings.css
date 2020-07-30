@@ -2,4 +2,9 @@
   & > * + * {
     margin-top: var(--spacing);
   }
+
+  &__phone-number {
+    display: block;
+    margin-top: var(--spacing-half);
+  }
 }

@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 import { useStoreState, useActions } from 'unistore-hooks';
 
 import { State } from '@app/store/types';
-//import { settingsDB } from '@app/store/idb';
 import { Button, ButtonGroup } from '@app/theme';
 import { actions } from '@app/store';
 

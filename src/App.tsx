@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { IntlProvider } from 'react-intl';
 import { Provider, useStoreState, useActions } from 'unistore-hooks';
-import { HashRouter } from 'react-router-dom';
 
 import { Loader } from '@app/theme';
 import { settingsDB } from '@app/store/idb';
@@ -63,9 +62,7 @@ const App = () => {
 
 ReactDOM.render(
   <Provider value={store}>
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <App />
   </Provider>,
   document.querySelector('#app')
 );

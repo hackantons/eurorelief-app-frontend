@@ -1,4 +1,4 @@
-export interface Notification {
+export interface Message {
   date: string;
   text: string;
 }

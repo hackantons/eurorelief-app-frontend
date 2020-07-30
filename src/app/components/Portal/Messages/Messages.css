@@ -1,0 +1,23 @@
+.messages {
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-page) !important;
+  }
+
+  &__item + .messages__item {
+    margin-top: var(--spacing);
+    padding-top: var(--spacing);
+    border-top: 1px solid var(--c-gray);
+  }
+
+  &__item-date {
+    color: var(--c-gray);
+    font-size: var(--fs-s);
+    font-weight: bold;
+  }
+
+  &__item-text {
+    margin-top: var(--spacing-half);
+  }
+}
