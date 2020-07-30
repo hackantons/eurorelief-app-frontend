@@ -44,7 +44,7 @@ const App = () => {
 
   return (
     <IntlProvider locale={intlLocale} messages={intlMessages}>
-      <div className="app">
+      <div  {...(intlLocale === "ar" ? {dir:"rtl"} : {})} className={'app ' + intlLocale}>
         <Logo className="app__logo" />
         {appInit ? (
           identity ? (

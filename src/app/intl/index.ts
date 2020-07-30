@@ -18,7 +18,7 @@ export const locales: IntlLocales = {
   // @ts-ignore
   som: ['som', somMessages.default, 'Somali'],
   // @ts-ignore
-  fa: ['ar', arMessages.default, 'عربى'],
+  ar: ['ar', arMessages.default, 'عربى'],
 };
 
 let language = "en"
