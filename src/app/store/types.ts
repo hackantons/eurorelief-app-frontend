@@ -7,8 +7,11 @@ export interface Identity {
 }
 
 export interface State {
-  intlLocale: string;
-  intlMessages: IntlMessages;
+  intl: {
+    locale: string;
+    messages: IntlMessages;
+    loading: string;
+  };
   identity: Identity;
   notifications: Array<Message>;
 }

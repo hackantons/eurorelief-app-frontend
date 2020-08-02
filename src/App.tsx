@@ -17,11 +17,7 @@ import './App.css';
 const App = () => {
   const [appInit, setAppInit] = useState<boolean>(false);
 
-  const { intlLocale, intlMessages, identity }: State = useStoreState([
-    'intlLocale',
-    'intlMessages',
-    'identity',
-  ]);
+  const { intl, identity }: State = useStoreState(['intl', 'identity']);
   const { setIdentity, updateNotifications } = useActions(actions);
 
   useEffect(() => {
@@ -42,9 +38,13 @@ const App = () => {
     updateNotifications();
   }, []);
 
+  useEffect(() => {
+    console.log('INTL', intl);
+  }, [intl]);
+
   return (
-    <IntlProvider locale={intlLocale} messages={intlMessages}>
-      <div className="app">
+    <IntlProvider locale={intl.locale} messages={intl.messages}>
+      <div className="app" lang={intl.locale}>
         <Logo className="app__logo" />
         {appInit ? (
           identity ? (

@@ -1,6 +1,9 @@
+import axios from 'redaxios';
+
 import { wait } from '@app/vendor/helpers';
 import { Identity } from '@app/store/types';
 import { settingsDB } from '@app/store/idb';
+import { IntlMessages } from '@app/intl/types';
 
 const mockedIdentity: Identity = {
   id: '12345',
@@ -93,3 +96,10 @@ export const checkKANumber = (number: string, formatMessage): Promise<string> =>
       }
     })
   );
+
+export const fetchLanguageStrings = (locale: string): Promise<IntlMessages> =>
+  new Promise(resolve => {
+    axios.get(`https://i18n.camp.nico.dev/${locale}/`).then(res => {
+      resolve(res.data);
+    });
+  });

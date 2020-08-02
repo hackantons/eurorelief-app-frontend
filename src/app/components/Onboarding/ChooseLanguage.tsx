@@ -9,7 +9,7 @@ import { locales } from '@app/intl';
 import './ChooseLanguage.css';
 
 const ChooseLanguage = ({ className = '' }: { className?: string }) => {
-  const { intlLocale }: State = useStoreState(['intlLocale']);
+  const { intl }: State = useStoreState(['intl']);
   const { setLocale } = useActions(actions);
 
   return (
@@ -20,7 +20,8 @@ const ChooseLanguage = ({ className = '' }: { className?: string }) => {
           onClick={() => {
             setLocale(key);
           }}
-          red={intlLocale === key}
+          red={intl.locale === key}
+          loading={intl.loading === key}
         >
           {locale[2]}
         </Button>
