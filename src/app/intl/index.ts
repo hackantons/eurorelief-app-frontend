@@ -7,6 +7,6 @@ export const locales: IntlLocales = {
   // @ts-ignore
   de: ['de-DE', null, 'Deutsch', false],
   // @ts-ignore
-  sy: ['ar-SY', null, 'عربى', true],
+  ar: ['ar-SY', null, 'عربى', true],
 };
 export const defaultLocale: string = Object.keys(locales)[0];
