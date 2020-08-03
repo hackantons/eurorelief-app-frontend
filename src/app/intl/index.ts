@@ -1,5 +1,6 @@
 import * as enMessages from './en.json';
-import { IntlLocales } from './types';
+import { IntlLocales, IntlMessages } from './types';
+import { getLanguageStrings } from '@app/vendor/api';
 
 export const locales: IntlLocales = {
   // @ts-ignore
@@ -10,3 +11,10 @@ export const locales: IntlLocales = {
   ar: ['ar-SY', null, 'عربى', true],
 };
 export const defaultLocale: string = Object.keys(locales)[0];
+
+export const fetchMessages = (locale: string): Promise<IntlMessages> =>
+  new Promise((resolve, reject) =>
+    getLanguageStrings(locale)
+      .then(res => resolve(res.data))
+      .catch(e => reject(e))
+  );

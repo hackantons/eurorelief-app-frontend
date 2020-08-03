@@ -18,11 +18,7 @@ const ChoosePhone = ({
   const { formatMessage } = useIntl();
 
   React.useEffect(() => {
-    /**
-     * This ist just a mock. Auth should be set after phone number + id set to the DB
-     */
     setIdentity({ id, phone: '123456789' });
-    settingsDB.set('jwt', 'JWT.aeec2188-5f15-43e1-9f26-cb39f65fc902');
   }, []);
 
   return (

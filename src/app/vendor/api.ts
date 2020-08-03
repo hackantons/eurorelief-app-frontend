@@ -1,44 +1,16 @@
-import axios from 'redaxios';
+import axios, { AxiosPromise, AxiosResponse } from 'axios';
 
 import { wait } from '@app/vendor/helpers';
 import { Identity } from '@app/store/types';
 import { settingsDB } from '@app/store/idb';
 import { IntlMessages } from '@app/intl/types';
 
+const API_BASE = 'http://localhost:5080/';
+
 const mockedIdentity: Identity = {
   id: '12345',
   phone: '789456123',
 };
-
-export const logIn = ({
-  tel,
-  password,
-}: {
-  tel: string;
-  password: string;
-}): Promise<Identity> =>
-  new Promise((resolve, reject) => {
-    wait().then(() => {
-      if (tel === '1234' && password === 'test') {
-        settingsDB.set(
-          'jwt',
-          'JWT.Loremipsumdolorsitametconsetetursadipscingelitr'
-        );
-        resolve(mockedIdentity);
-      } else {
-        reject();
-      }
-    });
-  });
-
-export const validateToken = (token: string): Promise<Identity> =>
-  new Promise((resolve, reject) => {
-    if (token) {
-      wait().then(() => resolve(mockedIdentity));
-    } else {
-      reject();
-    }
-  });
 
 export const getNotifications = () =>
   new Promise((resolve, reject) =>
@@ -86,20 +58,23 @@ export const getTickets = () =>
     )
   );
 
-export const checkKANumber = (number: string, formatMessage): Promise<string> =>
-  new Promise((resolve, reject) =>
-    wait(500).then(() => {
-      if (number === '00/000000') {
-        reject(new Error(formatMessage({ id: 'onboarding.number.invalid' })));
-      } else {
-        resolve('aeec2188-5f15-43e1-9f26-cb39f65fc902');
-      }
-    })
-  );
+export const getUser = () => axios.get(`${API_BASE}user/`);
 
-export const fetchLanguageStrings = (locale: string): Promise<IntlMessages> =>
-  new Promise(resolve => {
-    axios.get(`https://i18n.camp.nico.dev/${locale}/`).then(res => {
-      resolve(res.data);
-    });
+export const postAuthSignIn = (uuid: string, password: string) =>
+  axios.post(`${API_BASE}auth/signin/`, {
+    uuid,
+    password,
   });
+
+export const postCampID = (number: string) =>
+  axios.post(`${API_BASE}auth/resolve-camp-id/`, {
+    id: number,
+  });
+
+export const putAccount = (uuid: string) =>
+  axios.put(`${API_BASE}user/`, {
+    uuid,
+  });
+
+export const getLanguageStrings = (locale: string): Promise<AxiosResponse> =>
+  axios.get(`https://i18n.camp.nico.dev/${locale}/`);

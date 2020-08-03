@@ -1,11 +1,11 @@
-import { defaultLocale, locales } from '../intl';
+import { defaultLocale, fetchMessages, locales } from '../intl';
 import { isDev } from '../vendor/helpers';
 import { Identity, State } from '@app/store/types';
 
 import createStore, { Store } from 'unistore';
 import devtools from 'unistore/devtools';
 //import { settingsDB } from '@app/store/idb';
-import { fetchLanguageStrings, getNotifications } from '@app/vendor/api';
+import { getNotifications } from '@app/vendor/api';
 
 const initialState: State = {
   intl: {
@@ -28,10 +28,12 @@ export const actions = (store: Store<State>) => ({
         loading: intl,
       },
     });
-    fetchLanguageStrings(intl).then(messages => {
+    fetchMessages(intl).then(messages => {
       document.getElementsByTagName('html')[0].dir = locales[intl][3]
         ? 'rtl'
         : 'ltr';
+
+      // todo: set "lang" cookie
 
       store.setState({
         intl: {

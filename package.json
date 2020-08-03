@@ -19,6 +19,8 @@
     "lint": "npm run eslint && npm run stylelint"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.29",
     "idb": "^5.0.4",

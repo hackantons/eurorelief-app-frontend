@@ -1,10 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { Icon, Loader, Message } from '@app/theme';
-import { checkKANumber } from '@app/vendor/api';
+import { Loader, Message } from '@app/theme';
 
-import './ChooseKANumber.css';
+import './SetUserID.css';
 
 const MAX_NUMBER = 6;
 const FORM_STATES = {
@@ -14,52 +13,26 @@ const FORM_STATES = {
   SUCCESS: 'SUCCESS',
 };
 
-const ChooseKANumber = ({
+const SetUserID = ({
   className = '',
-  setButtonDisabled,
   documentType,
   setId,
+  error,
+  loading = false,
 }: {
   className?: string;
-  setButtonDisabled: Function;
   documentType: string;
   setId: Function;
+  error: string;
+  loading: boolean;
 }) => {
   const { formatMessage } = useIntl();
   const [prefix, setPrefix] = React.useState<string>('05');
   const [number, setNumber] = React.useState<string>('');
-  const [formState, setFormState] = React.useState<string>(
-    Object.values(FORM_STATES)[0]
-  );
-  const [formError, setFormError] = React.useState<string>('');
 
   React.useEffect(() => {
-    setButtonDisabled(true);
-    return () => {
-      setButtonDisabled(false);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (prefix.length === 2 && number.length === MAX_NUMBER) {
-      setFormState(FORM_STATES.PENDING);
-      checkKANumber(`${prefix}/${number}`, formatMessage)
-        .then(id => {
-          setFormState(FORM_STATES.SUCCESS);
-          setId(id);
-        })
-        .catch(error => {
-          setFormError(error.message);
-          setFormState(FORM_STATES.ERROR);
-        });
-    } else {
-      setFormState(FORM_STATES.NEUTRAL);
-    }
+    setId(`${prefix.padStart(2, '0')}/${number}`);
   }, [prefix, number]);
-
-  React.useEffect(() => {
-    setButtonDisabled(formState !== FORM_STATES.SUCCESS);
-  }, [formState]);
 
   return (
     <div className={`${className} choose-kanumber`}>
@@ -69,7 +42,7 @@ const ChooseKANumber = ({
       <p>2. {formatMessage({ id: 'onboarding.number.step2' })}</p>
       <div
         className={`choose-kanumber__input ${
-          formState === FORM_STATES.ERROR ? 'choose-kanumber__input--error' : ''
+          error !== '' ? 'choose-kanumber__input--error' : ''
         }`}
       >
         <input
@@ -79,7 +52,7 @@ const ChooseKANumber = ({
           max={2}
           value={prefix}
           name="prefix"
-          disabled={formState === FORM_STATES.PENDING}
+          disabled={loading}
           onInput={e => {
             const max = 2;
             let val = (e.target as HTMLInputElement).value;
@@ -98,7 +71,7 @@ const ChooseKANumber = ({
           max={MAX_NUMBER}
           name="number"
           value={number}
-          disabled={formState === FORM_STATES.PENDING}
+          disabled={loading}
           onInput={e => {
             const max = MAX_NUMBER;
             let val = (e.target as HTMLInputElement).value;
@@ -111,27 +84,13 @@ const ChooseKANumber = ({
         />
         <Loader
           className={`choose-kanumber__loader ${
-            formState === FORM_STATES.PENDING
-              ? 'choose-kanumber__loader--show'
-              : ''
-          }`}
-        />
-        <Icon
-          icon="mdi/check"
-          className={`choose-kanumber__checked ${
-            formState === FORM_STATES.SUCCESS
-              ? 'choose-kanumber__checked--show'
-              : ''
+            loading ? 'choose-kanumber__loader--show' : ''
           }`}
         />
       </div>
-      {formState === FORM_STATES.ERROR && (
-        <Message type="error">
-          {formError || formatMessage({ id: 'general.error' })}
-        </Message>
-      )}
+      {error !== '' && <Message type="error">{error}</Message>}
     </div>
   );
 };
 
-export default ChooseKANumber;
+export default SetUserID;

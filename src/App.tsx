@@ -4,15 +4,15 @@ import { IntlProvider } from 'react-intl';
 import { Provider, useStoreState, useActions } from 'unistore-hooks';
 
 import { Loader } from '@app/theme';
-import { settingsDB } from '@app/store/idb';
 import { store, actions } from '@app/store';
 import { State } from '@app/store/types';
-import { validateToken } from '@app/vendor/api';
 import Onboarding from '@comp/Onboarding/Onboarding';
 import Portal from '@comp/Portal/Portal';
 import { Logo } from '@app/theme';
 
 import './App.css';
+import { doSignIn } from '@app/authentication/actions';
+import { fetchUser } from '@app/authentication/network';
 
 const App = () => {
   const [appInit, setAppInit] = useState<boolean>(false);
@@ -21,10 +21,9 @@ const App = () => {
   const { setIdentity, updateNotifications } = useActions(actions);
 
   useEffect(() => {
-    settingsDB
-      .get('jwt')
-      .then((jwt: string) =>
-        validateToken(jwt)
+    doSignIn()
+      .then(() =>
+        fetchUser()
           .then(identity => {
             setIdentity(identity);
             setAppInit(true);
@@ -38,9 +37,7 @@ const App = () => {
     updateNotifications();
   }, []);
 
-  useEffect(() => {
-    console.log('INTL', intl);
-  }, [intl]);
+  // todo: check for "lang" cookie and load language if not en
 
   return (
     <IntlProvider locale={intl.locale} messages={intl.messages}>
