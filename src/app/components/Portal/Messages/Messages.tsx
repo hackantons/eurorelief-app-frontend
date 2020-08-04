@@ -19,6 +19,9 @@ const Messages = ({ className = '' }: { className?: string }) => {
     updateNotifications();
   }, []);
 
+  // todo: update messages seen if messages change
+  // todo: reload messages on push rcieved
+
   return (
     <div className={`${className} messages`}>
       <h2>{formatMessage({ id: 'messages.title' })}</h2>
