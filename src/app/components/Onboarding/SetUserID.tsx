@@ -31,7 +31,6 @@ const SetUserID = ({
       // @ts-ignore
       prefixRef.current.focus();
     }
-    console.log(prefixRef);
   }, [prefixRef]);
 
   React.useEffect(() => {

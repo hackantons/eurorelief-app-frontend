@@ -13,7 +13,7 @@ export interface State {
     loading: string;
   };
   identity: Identity;
-  notifications: {
+  messages: {
     state: string;
     data: Array<Message>;
     error: string;

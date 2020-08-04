@@ -9,10 +9,18 @@
     margin-top: var(--spacing-page) !important;
   }
 
-  &__item + .messages__item {
-    margin-top: var(--spacing);
-    padding-top: var(--spacing);
-    border-top: 1px solid var(--c-gray);
+  &__item {
+    @mixin transition 1000ms, background-color;
+
+    &--new {
+      background-color: var(--c-primary);
+    }
+
+    & + .messages__item {
+      margin-top: var(--spacing);
+      padding-top: var(--spacing);
+      border-top: 1px solid var(--c-gray);
+    }
   }
 
   &__item-date {

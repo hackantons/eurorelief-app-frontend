@@ -12,6 +12,9 @@ const mockedIdentity: Identity = {
 
 export const getMessages = () => axios.get(`${API_BASE}messages/`);
 
+export const postMessagesSeen = (uuids: Array<string>) =>
+  axios.post(`${API_BASE}messages/seen/`, { messages: uuids });
+
 export const getTickets = () =>
   new Promise((resolve, reject) =>
     wait(500).then(() =>

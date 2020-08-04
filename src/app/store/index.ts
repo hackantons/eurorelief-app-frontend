@@ -5,7 +5,7 @@ import { Identity, State } from '@app/store/types';
 import createStore, { Store } from 'unistore';
 import devtools from 'unistore/devtools';
 //import { settingsDB } from '@app/store/idb';
-import { getMessages } from '@app/vendor/api';
+import { getMessages, postMessagesSeen } from '@app/vendor/api';
 import { FETCH_STATES } from '@app/vendor/constants';
 import dayjs from '@app/vendor/dayjs';
 
@@ -16,7 +16,7 @@ const initialState: State = {
     loading: '',
   },
   identity: null,
-  notifications: {
+  messages: {
     state: FETCH_STATES.PENDING,
     data: [],
     error: '',
@@ -55,18 +55,18 @@ export const actions = (store: Store<State>) => ({
     });
   },
   setIdentity: (state, identity: Identity) => store.setState({ identity }),
-  updateNotifications: state => {
+  updateMessages: state => {
     store.setState({
-      notifications: {
-        ...state.notifications,
+      messages: {
+        ...state.messages,
         state: FETCH_STATES.PENDING,
       },
     });
     getMessages()
       .then(res =>
         store.setState({
-          notifications: {
-            ...state.notifications,
+          messages: {
+            ...state.messages,
             state: FETCH_STATES.SUCCESS,
             data: res.data,
           },
@@ -74,13 +74,24 @@ export const actions = (store: Store<State>) => ({
       )
       .catch(() =>
         store.setState({
-          notifications: {
-            ...state.notifications,
+          messages: {
+            ...state.messages,
             state: FETCH_STATES.ERROR,
             error: 'general.error',
           },
         })
       );
+  },
+  setMessagesAsSeen: (state, uuids) => {
+    postMessagesSeen(uuids).then(res => {
+      store.setState({
+        messages: {
+          ...state.messages,
+          state: FETCH_STATES.SUCCESS,
+          data: res.data,
+        },
+      });
+    });
   },
 });
 
