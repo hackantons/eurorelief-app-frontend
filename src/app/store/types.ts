@@ -13,7 +13,11 @@ export interface State {
     loading: string;
   };
   identity: Identity;
-  notifications: Array<Message>;
+  notifications: {
+    state: string;
+    data: Array<Message>;
+    error: string;
+  };
 }
 
 export interface Actions {}

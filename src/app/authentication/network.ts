@@ -1,5 +1,6 @@
 import {
-  putAccount,
+  putUser,
+  postUser,
   postCampID,
   postAuthSignIn,
   getUser,
@@ -13,6 +14,13 @@ export const fetchUser = (): Promise<Identity> =>
       .catch(e => reject(e))
   );
 
+export const updateUser = (data): Promise<Identity> =>
+  new Promise((resolve, reject) =>
+    postUser(data)
+      .then(res => resolve(res.data))
+      .catch(e => reject(e))
+  );
+
 export const signIn = (uuid: string, password: string): Promise<string> =>
   new Promise((resolve, reject) =>
     postAuthSignIn(uuid, password)
@@ -22,11 +30,11 @@ export const signIn = (uuid: string, password: string): Promise<string> =>
       .catch(e => reject(e))
   );
 
-export const createAccount = (
+export const createUser = (
   uuid: string
 ): Promise<{ user: string; password: string }> =>
   new Promise((resolve, reject) =>
-    putAccount(uuid)
+    putUser(uuid)
       .then(res => resolve(res.data))
       .catch(e => reject(e))
   );

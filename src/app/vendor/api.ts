@@ -2,8 +2,6 @@ import axios, { AxiosPromise, AxiosResponse } from 'axios';
 
 import { wait } from '@app/vendor/helpers';
 import { Identity } from '@app/store/types';
-import { settingsDB } from '@app/store/idb';
-import { IntlMessages } from '@app/intl/types';
 
 const API_BASE = 'http://localhost:5080/';
 
@@ -12,28 +10,7 @@ const mockedIdentity: Identity = {
   phone: '789456123',
 };
 
-export const getNotifications = () =>
-  new Promise((resolve, reject) =>
-    wait(1500).then(() =>
-      resolve([
-        {
-          date: '25.07.2020',
-          text:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod',
-        },
-        {
-          date: '25.07.2020',
-          text:
-            'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-        },
-        {
-          date: '25.07.2020',
-          text:
-            'At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren',
-        },
-      ])
-    )
-  );
+export const getMessages = () => axios.get(`${API_BASE}messages/`);
 
 export const getTickets = () =>
   new Promise((resolve, reject) =>
@@ -60,6 +37,8 @@ export const getTickets = () =>
 
 export const getUser = () => axios.get(`${API_BASE}user/`);
 
+export const postUser = data => axios.post(`${API_BASE}user/`, data);
+
 export const postAuthSignIn = (uuid: string, password: string) =>
   axios.post(`${API_BASE}auth/signin/`, {
     uuid,
@@ -71,10 +50,16 @@ export const postCampID = (number: string) =>
     id: number,
   });
 
-export const putAccount = (uuid: string) =>
+export const putUser = (uuid: string) =>
   axios.put(`${API_BASE}user/`, {
     uuid,
   });
 
 export const getLanguageStrings = (locale: string): Promise<AxiosResponse> =>
   axios.get(`https://i18n.camp.nico.dev/${locale}/`);
+
+export const getPushKey = (): Promise<AxiosResponse> =>
+  axios.get(`${API_BASE}push/key/`);
+
+export const putSubscription = (subscription): Promise<AxiosResponse> =>
+  axios.put(`${API_BASE}subscription/`, subscription);

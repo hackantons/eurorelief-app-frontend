@@ -1,8 +1,6 @@
 import { settingsDB } from '@app/store/idb';
 import { signIn as networkSignIn } from './network';
 import axios from 'axios';
-import { Identity } from '@app/store/types';
-import { getUser } from '@app/vendor/api';
 
 const generateJWT = (): Promise<string> =>
   new Promise((resolve, reject) => {

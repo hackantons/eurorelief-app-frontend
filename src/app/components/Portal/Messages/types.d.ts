@@ -1,4 +1,7 @@
 export interface Message {
-  date: string;
-  text: string;
+  uuid: string;
+  message: string;
+  sent: string;
+  sentVia: string;
+  seen: string;
 }

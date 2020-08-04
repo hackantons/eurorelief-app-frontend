@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { IntlProvider } from 'react-intl';
 import { Provider, useStoreState, useActions } from 'unistore-hooks';
 
+import dayjs from '@app/vendor/dayjs';
 import { Loader } from '@app/theme';
 import { store, actions } from '@app/store';
 import { State } from '@app/store/types';
@@ -10,17 +11,18 @@ import Onboarding from '@comp/Onboarding/Onboarding';
 import Portal from '@comp/Portal/Portal';
 import { Logo } from '@app/theme';
 
-import './App.css';
 import { doSignIn } from '@app/authentication/actions';
 import { fetchUser } from '@app/authentication/network';
 
+import './App.css';
+
 const App = () => {
-  const [appInit, setAppInit] = useState<boolean>(false);
+  const [appInit, setAppInit] = React.useState<boolean>(false);
 
   const { intl, identity }: State = useStoreState(['intl', 'identity']);
   const { setIdentity, updateNotifications } = useActions(actions);
 
-  useEffect(() => {
+  React.useEffect(() => {
     doSignIn()
       .then(() =>
         fetchUser()
@@ -31,10 +33,6 @@ const App = () => {
           .catch(() => setAppInit(true))
       )
       .catch(() => setAppInit(true));
-  }, []);
-
-  useEffect(() => {
-    updateNotifications();
   }, []);
 
   // todo: check for "lang" cookie and load language if not en

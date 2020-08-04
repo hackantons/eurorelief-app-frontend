@@ -1,4 +1,8 @@
 .messages {
+  &__notification {
+    margin-top: var(--spacing-page) !important;
+  }
+
   &__list {
     list-style: none;
     padding: 0;

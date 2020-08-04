@@ -12,7 +12,7 @@ import './Settings.css';
 const Settings = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
   const { identity }: State = useStoreState(['identity']);
-  const { setIdentity } = useActions(actions);
+  const { setIdentity, setLocale } = useActions(actions);
 
   return (
     <div className={`${className} settings`}>
@@ -47,11 +47,14 @@ const Settings = ({ className = '' }: { className?: string }) => {
         <button
           onClick={() => {
             settingsDB.set('jwt', '');
+            settingsDB.set('password', '');
+            settingsDB.set('user', '');
             setIdentity(null);
           }}
         >
           logout
         </button>
+        <button onClick={() => setLocale('de')}>DE</button>
       </ButtonGroup>
     </div>
   );

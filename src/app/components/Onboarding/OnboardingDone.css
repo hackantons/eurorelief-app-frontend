@@ -1,0 +1,52 @@
+.onboarding-done {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  background-color: var(--c-primary);
+
+  &__inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 100%;
+    max-height: 100vh;
+    max-width: var(--app-max-width);
+    padding: var(--spacing-page) var(--spacing-page) 30vh var(--spacing-page);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__title {
+    color: #fff;
+    text-align: center;
+    margin-bottom: calc(var(--spacing-page) * 2);
+  }
+
+  &__desc {
+    opacity: 0;
+    color: #fff;
+    text-align: center;
+    margin-bottom: var(--spacing-page);
+
+    @mixin transition 400ms, opacity;
+
+    &[aria-hidden='false'] {
+      opacity: 1;
+    }
+  }
+
+  &__smiley {
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 40vh;
+    z-index: -1;
+    transform: translateY(-10%) translateX(30%);
+  }
+}

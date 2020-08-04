@@ -65,7 +65,7 @@ const Input = ({
       </label>
       {type === 'textarea' && <textarea {...inputProps}>{value}</textarea>}
       {type === 'text' && (
-        <input type={subtype} {...inputProps} value={value} />
+        <input type={subtype} {...inputProps} {...(value ? { value } : {})} />
       )}
       {type === 'select' && (
         <select {...inputProps}>

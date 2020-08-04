@@ -78,7 +78,7 @@ module.exports = (env, argv) => {
               useShortDoctype: true,
             },
       }),
-      ...(!dev // only generate manifest and SW in prod build
+      ...(!dev || process.env.GENERATE_SW === 'true' // only generate manifest and SW in prod build
         ? [
             new WebpackPwaManifest({
               name: app.title,

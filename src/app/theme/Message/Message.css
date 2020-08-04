@@ -24,7 +24,7 @@
     }
   }
 
-  color: var(--c-primary-dark);
+  color: var(--c-blue-dark);
   &--error {
     color: var(--c-feedback-error);
   }

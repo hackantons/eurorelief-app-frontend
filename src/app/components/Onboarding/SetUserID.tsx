@@ -5,13 +5,7 @@ import { Loader, Message } from '@app/theme';
 
 import './SetUserID.css';
 
-const MAX_NUMBER = 6;
-const FORM_STATES = {
-  NEUTRAL: 'NEUTRAL',
-  ERROR: 'ERROR',
-  PENDING: 'PENDING',
-  SUCCESS: 'SUCCESS',
-};
+const MAX_NUMBER = 8;
 
 const SetUserID = ({
   className = '',
@@ -26,32 +20,44 @@ const SetUserID = ({
   error: string;
   loading: boolean;
 }) => {
+  const prefixRef = React.useRef();
+  const numberRef = React.useRef();
   const { formatMessage } = useIntl();
-  const [prefix, setPrefix] = React.useState<string>('05');
+  const [prefix, setPrefix] = React.useState<string>('');
   const [number, setNumber] = React.useState<string>('');
+
+  React.useEffect(() => {
+    if (prefixRef.current) {
+      // @ts-ignore
+      prefixRef.current.focus();
+    }
+    console.log(prefixRef);
+  }, [prefixRef]);
 
   React.useEffect(() => {
     setId(`${prefix.padStart(2, '0')}/${number}`);
   }, [prefix, number]);
 
   return (
-    <div className={`${className} choose-kanumber`}>
+    <div className={`${className} set-user-id`}>
       <p>
         1. {formatMessage({ id: 'onboarding.number.step1.' + documentType })}
       </p>
       <p>2. {formatMessage({ id: 'onboarding.number.step2' })}</p>
       <div
-        className={`choose-kanumber__input ${
-          error !== '' ? 'choose-kanumber__input--error' : ''
+        className={`set-user-id__input ${
+          error !== '' ? 'set-user-id__input--error' : ''
         }`}
       >
         <input
-          className="choose-kanumber__input-prefix"
+          className="set-user-id__input-prefix"
           type="number"
           placeholder="05"
           max={2}
           value={prefix}
           name="prefix"
+          // @ts-ignore
+          ref={prefixRef}
           disabled={loading}
           onInput={e => {
             const max = 2;
@@ -59,18 +65,24 @@ const SetUserID = ({
             if (val.length > max) {
               val = val.slice(0, max);
             }
+            if (val.length >= max) {
+              // @ts-ignore
+              numberRef.current.focus();
+            }
             (e.target as HTMLInputElement).value = val;
             setPrefix(val);
           }}
         />
-        <span className="choose-kanumber__input-devider">/</span>
+        <span className="set-user-id__input-devider">/</span>
         <input
-          className="choose-kanumber__input-number"
+          className="set-user-id__input-number"
           type="text"
           placeholder={new Array(MAX_NUMBER).fill('0').join('')}
           max={MAX_NUMBER}
           name="number"
           value={number}
+          // @ts-ignore
+          ref={numberRef}
           disabled={loading}
           onInput={e => {
             const max = MAX_NUMBER;
@@ -83,8 +95,8 @@ const SetUserID = ({
           }}
         />
         <Loader
-          className={`choose-kanumber__loader ${
-            loading ? 'choose-kanumber__loader--show' : ''
+          className={`set-user-id__loader ${
+            loading ? 'set-user-id__loader--show' : ''
           }`}
         />
       </div>

@@ -1,25 +1,21 @@
 import React from 'react';
-import { Form, InputText } from '@app/theme';
+import { InputText, Message } from '@app/theme';
 import { useIntl } from 'react-intl';
 
 import './ChoosePhone.css';
-import { settingsDB } from '@app/store/idb';
 
 const ChoosePhone = ({
   className = '',
-  setIdentity,
-  id,
+  setPhone,
+  error,
+  loading = false,
 }: {
   className?: string;
-  setIdentity: Function;
-  id: string;
+  setPhone: Function;
+  error: string;
+  loading: boolean;
 }) => {
-  const [phone, setPhone] = React.useState<string>('');
   const { formatMessage } = useIntl();
-
-  React.useEffect(() => {
-    setIdentity({ id, phone: '123456789' });
-  }, []);
 
   return (
     <div className={`${className} choose-phone`}>
@@ -27,8 +23,10 @@ const ChoosePhone = ({
       <InputText
         name="phone"
         label={formatMessage({ id: 'onboarding.phone.label' })}
+        disabled={loading}
+        onInput={e => setPhone((e.target as HTMLInputElement).value)}
       />
-      <p>ToDo: Submit?</p>
+      {error !== '' && <Message type="error">{error}</Message>}
     </div>
   );
 };

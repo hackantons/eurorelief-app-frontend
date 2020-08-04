@@ -5,7 +5,9 @@ import { Identity, State } from '@app/store/types';
 import createStore, { Store } from 'unistore';
 import devtools from 'unistore/devtools';
 //import { settingsDB } from '@app/store/idb';
-import { getNotifications } from '@app/vendor/api';
+import { getMessages } from '@app/vendor/api';
+import { FETCH_STATES } from '@app/vendor/constants';
+import dayjs from '@app/vendor/dayjs';
 
 const initialState: State = {
   intl: {
@@ -14,7 +16,11 @@ const initialState: State = {
     loading: '',
   },
   identity: null,
-  notifications: [],
+  notifications: {
+    state: FETCH_STATES.PENDING,
+    data: [],
+    error: '',
+  },
 };
 
 export const actions = (store: Store<State>) => ({
@@ -28,11 +34,14 @@ export const actions = (store: Store<State>) => ({
         loading: intl,
       },
     });
+
     fetchMessages(intl).then(messages => {
       document.getElementsByTagName('html')[0].dir = locales[intl][3]
         ? 'rtl'
         : 'ltr';
 
+      require(`dayjs/locale/${intl}`);
+      dayjs.locale(intl);
       // todo: set "lang" cookie
 
       store.setState({
@@ -46,11 +55,33 @@ export const actions = (store: Store<State>) => ({
     });
   },
   setIdentity: (state, identity: Identity) => store.setState({ identity }),
-  updateNotifications: () =>
-    getNotifications().then(notifications => {
-      // @ts-ignore
-      store.setState({ notifications });
-    }),
+  updateNotifications: state => {
+    store.setState({
+      notifications: {
+        ...state.notifications,
+        state: FETCH_STATES.PENDING,
+      },
+    });
+    getMessages()
+      .then(res =>
+        store.setState({
+          notifications: {
+            ...state.notifications,
+            state: FETCH_STATES.SUCCESS,
+            data: res.data,
+          },
+        })
+      )
+      .catch(() =>
+        store.setState({
+          notifications: {
+            ...state.notifications,
+            state: FETCH_STATES.ERROR,
+            error: 'general.error',
+          },
+        })
+      );
+  },
 });
 
 export const store = isDev

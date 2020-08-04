@@ -1,3 +1,7 @@
 .push-notifications {
   align-items: center;
+
+  &__error {
+    margin-top: var(--spacing-page);
+  }
 }

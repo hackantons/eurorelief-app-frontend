@@ -13,38 +13,57 @@ import SetUserID from '@comp/Onboarding/SetUserID';
 import ChoosePhone from '@comp/Onboarding/ChoosePhone';
 import Install from '@comp/Onboarding/Install';
 import PushNotifications from '@comp/Onboarding/PushNotifications';
+import OnboardingDone from '@comp/Onboarding/OnboardingDone';
 
 import './Onboarding.css';
 import { settingsDB } from '@app/store/idb';
 import {
-  createAccount,
+  createUser,
   fetchUser,
   resolveCampID,
+  updateUser,
 } from '@app/authentication/network';
 import { Promise } from 'es6-promise';
 import { doSignIn } from '@app/authentication/actions';
-import { getUser } from '@app/vendor/api';
+
+const PROGRESS_STATES = {
+  WELCOME: 'welcome',
+  DOCUMENT: 'document',
+  PAPERS: 'papers',
+  PHONE: 'phone',
+  INSTALL: 'install',
+  NOTIFICATION: 'notification',
+  DONE: 'done',
+};
 
 const Onboarding = ({ className = '' }: { className?: string }) => {
-  const [progress, setProgress] = React.useState<number>(0);
+  const [progress, setProgress] = React.useState<string>(
+    Object.values(PROGRESS_STATES)[0]
+  );
   const [documentType, setDocumentType] = React.useState<string>(null);
   const [id, setId] = React.useState<string>(null);
-  const [password, setPassword] = React.useState<string>(null);
+  const [phone, setPhone] = React.useState<string>(null);
   const [error, setError] = React.useState<string>('');
-
   const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(false);
   const [buttonLoading, setButtonLoading] = React.useState<boolean>(false);
   const [identity, setIdentity] = React.useState<Identity>(null);
   const { formatMessage } = useIntl();
   const { setIdentity: setStoreIdentity } = useActions(actions);
 
-  const nextStep = () => setProgress(progress + 1);
+  const nextStep = () => {
+    const steps = Object.values(PROGRESS_STATES);
+    setProgress(steps[steps.indexOf(progress) + 1]);
+  };
 
-  const signUp = id =>
+  React.useEffect(() => {
+    setError('');
+  }, [progress]);
+
+  const signUp = (id): Promise<Identity> =>
     new Promise((resolve, reject) =>
       resolveCampID(id)
         .then(uuid => {
-          createAccount(uuid)
+          createUser(uuid)
             .then(({ user, password }) => {
               Promise.all([
                 settingsDB.set('user', user),
@@ -65,22 +84,31 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
                 })
                 .catch(() => reject(formatMessage({ id: 'general.error' })));
             })
-            .catch(() => reject(formatMessage({ id: 'general.error' })));
+            .catch(() =>
+              reject(formatMessage({ id: 'onboarding.account.failed' }))
+            );
         })
         .catch(() => reject(formatMessage({ id: 'onboarding.number.invalid' })))
     );
 
+  const updatePhone = (): Promise<Identity> =>
+    new Promise((resolve, reject) =>
+      updateUser({ phone })
+        .then(identity => resolve(identity))
+        .catch(() => reject(formatMessage({ id: 'onboarding.phone.error' })))
+    );
+
   return (
     <div className={`${className} onboarding`}>
-      {progress === 0 && (
+      {progress === PROGRESS_STATES.WELCOME && (
         <React.Fragment>
           <h1>{formatMessage({ id: 'onboarding.title.welcome' })}</h1>
           <ChooseLanguage className="onboarding__content" />
         </React.Fragment>
       )}
-      {progress === 1 && (
+      {progress === PROGRESS_STATES.DOCUMENT && (
         <React.Fragment>
-          <h1>{formatMessage({ id: 'onboarding.title.welcome' })}</h1>
+          <h1>{formatMessage({ id: 'onboarding.title.document' })}</h1>
           <DocumentType
             nextStep={nextStep}
             setDocumentType={setDocumentType}
@@ -88,7 +116,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
           />
         </React.Fragment>
       )}
-      {progress === 2 && (
+      {progress === PROGRESS_STATES.PAPERS && (
         <React.Fragment>
           <h1>{formatMessage({ id: 'onboarding.title.papers' })}</h1>
           <SetUserID
@@ -100,74 +128,95 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
           />
         </React.Fragment>
       )}
-      {progress === 3 && (
+      {progress === PROGRESS_STATES.PHONE && (
         <React.Fragment>
-          <h1>{formatMessage({ id: 'onboarding.title.papers' })}</h1>
+          <h1>{formatMessage({ id: 'onboarding.title.phone' })}</h1>
           <ChoosePhone
             className="onboarding__content"
-            setIdentity={setIdentity}
-            id={id}
+            setPhone={setPhone}
+            error={error}
+            loading={buttonDisabled}
           />
         </React.Fragment>
       )}
-      {progress === 4 && (
+      {progress === PROGRESS_STATES.INSTALL && (
         <React.Fragment>
-          <h1>{formatMessage({ id: 'onboarding.title.papers' })}</h1>
+          <h1>{formatMessage({ id: 'onboarding.title.install' })}</h1>
           <Install className="onboarding__content" nextStep={nextStep} />
         </React.Fragment>
       )}
-      {progress === 5 && (
+      {progress === PROGRESS_STATES.NOTIFICATION && (
         <React.Fragment>
-          <h1>{formatMessage({ id: 'onboarding.title.papers' })}</h1>
+          <h1>{formatMessage({ id: 'onboarding.title.notification' })}</h1>
           <PushNotifications
             className="onboarding__content"
             nextStep={nextStep}
           />
         </React.Fragment>
       )}
-      {progress === 6 && (
+      {progress === PROGRESS_STATES.DONE && (
         <React.Fragment>
-          <h1>{formatMessage({ id: 'onboarding.title.papers' })}</h1>
-          <p>done</p>
+          <OnboardingDone
+            setIdentity={() => {
+              setStoreIdentity(identity);
+            }}
+          />
         </React.Fragment>
       )}
-      {progress !== 1 && (
-        <Button
-          className="onboarding__progress"
-          onClick={() => {
-            setError('');
-            setButtonLoading(true);
-            setButtonDisabled(true);
-            if (progress === 2) {
-              signUp(id)
-                .then(() => {
-                  setButtonLoading(false);
-                  setButtonDisabled(false);
-                  nextStep();
-                })
-                .catch(e => {
-                  setButtonLoading(false);
-                  setButtonDisabled(false);
-                  setError(e);
-                });
-            } else {
-              setButtonLoading(false);
-              setButtonDisabled(false);
-              nextStep();
-            }
-          }}
-          icon="mdi/chevron-down"
-          red
-          disabled={buttonDisabled || buttonLoading}
-          loading={buttonLoading}
-        >
-          {formatMessage({
-            id: `onboarding.progress.${
-              progress === 0 ? 'start' : progress === 4 ? 'done' : 'next'
-            }`,
-          })}
-        </Button>
-      )}
+      {progress !== PROGRESS_STATES.DOCUMENT &&
+        progress !== PROGRESS_STATES.DONE && (
+          <Button
+            className="onboarding__progress"
+            onClick={() => {
+              setError('');
+              setButtonLoading(true);
+              setButtonDisabled(true);
+              if (progress === PROGRESS_STATES.PAPERS) {
+                signUp(id)
+                  .then(identity => {
+                    setButtonLoading(false);
+                    setButtonDisabled(false);
+                    setIdentity(identity);
+                    nextStep();
+                  })
+                  .catch(e => {
+                    setButtonLoading(false);
+                    setButtonDisabled(false);
+                    setError(e);
+                  });
+              } else if (progress === PROGRESS_STATES.PHONE) {
+                updatePhone()
+                  .then(identity => {
+                    setButtonLoading(false);
+                    setButtonDisabled(false);
+                    setIdentity(identity);
+                    nextStep();
+                  })
+                  .catch(e => {
+                    setButtonLoading(false);
+                    setButtonDisabled(false);
+                    setError(e);
+                  });
+              } else {
+                setButtonLoading(false);
+                setButtonDisabled(false);
+                nextStep();
+              }
+            }}
+            icon="mdi/chevron-down"
+            red
+            disabled={buttonDisabled || buttonLoading}
+            loading={buttonLoading}
+          >
+            {formatMessage({
+              id: `onboarding.progress.${
+                progress === Object.values(PROGRESS_STATES)[0]
+                  ? 'start'
+                  : 'next'
+              }`,
+            })}
+          </Button>
+        )}
     </div>
   );
 };

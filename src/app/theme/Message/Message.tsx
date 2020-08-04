@@ -1,7 +1,8 @@
 import React from 'react';
 
-import './Message.css';
 import { Icon } from '@app/theme';
+
+import './Message.css';
 
 const Message = ({
   className = '',
