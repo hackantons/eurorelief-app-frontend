@@ -77,7 +77,7 @@ export const actions = (store: Store<State>) => ({
           messages: {
             ...state.messages,
             state: FETCH_STATES.ERROR,
-            error: 'general.error',
+            error: 'form.error.general',
           },
         })
       );

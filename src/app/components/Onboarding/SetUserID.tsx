@@ -40,9 +40,10 @@ const SetUserID = ({
   return (
     <div className={`${className} set-user-id`}>
       <p>
-        1. {formatMessage({ id: 'onboarding.number.step1.' + documentType })}
+        1.{' '}
+        {formatMessage({ id: `onboarding.paper.${documentType}.description` })}
       </p>
-      <p>2. {formatMessage({ id: 'onboarding.number.step2' })}</p>
+      <p>2. {formatMessage({ id: 'onboarding.paper.step2' })}</p>
       <div
         className={`set-user-id__input ${
           error !== '' ? 'set-user-id__input--error' : ''

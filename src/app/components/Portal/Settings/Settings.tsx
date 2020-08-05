@@ -18,7 +18,7 @@ const Settings = ({ className = '' }: { className?: string }) => {
     <div className={`${className} settings`}>
       <p className="settings__phone">
         {formatMessage(
-          { id: 'account.phone' },
+          { id: 'portal.settings.phone' },
           {
             phone: (
               <b className="settings__phone-number">

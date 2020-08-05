@@ -38,4 +38,18 @@
       }
     }
   }
+
+  &__back {
+    text-align: left;
+    margin-top: 1em;
+    color: var(--c-gray);
+
+    .icon {
+      margin-bottom: -0.1em;
+    }
+  }
+
+  &__skip {
+    align-self: flex-start;
+  }
 }

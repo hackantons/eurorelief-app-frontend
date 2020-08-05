@@ -72,6 +72,10 @@ button {
     border-radius: 1000px;
   }
 
+  &--size-small {
+    font-size: var(--fs-s);
+  }
+
   &__loader {
     position: absolute;
     top: 50%;

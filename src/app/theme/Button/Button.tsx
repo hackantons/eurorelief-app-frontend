@@ -13,6 +13,7 @@ const Button = ({
   round = false,
   red = false,
   loading = false,
+  small = false,
   ui = 'normal',
   icon,
   ...props
@@ -24,6 +25,7 @@ const Button = ({
   red?: boolean;
   icon?: string;
   loading?: boolean;
+  small?: boolean;
   ui?: 'normal' | 'none';
   [x: string]: any;
 }) => {
@@ -35,6 +37,7 @@ const Button = ({
         'button--has-text': children,
         'button--bkg-red': red,
         'button--loading': loading,
+        'button--size-small': small,
       })}
       onClick={onClick ? () => onClick() : null}
       {...props}

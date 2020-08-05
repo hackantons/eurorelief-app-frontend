@@ -26,22 +26,22 @@ const OnboardingDone = ({
     <div className={`${className} onboarding-done`}>
       <div className="onboarding-done__inner">
         <h1 className="onboarding-done__title">
-          {formatMessage({ id: 'onboarding.done.title' })}
+          {formatMessage({ id: 'onboarding.success.title' })}
         </h1>
+        <p className="onboarding-done__desc" aria-hidden={steps < 0}>
+          {formatMessage({ id: 'onboarding.success.desc1' })}
+        </p>
         <p className="onboarding-done__desc" aria-hidden={steps < 1}>
-          {formatMessage({ id: 'onboarding.done.desc1' })}
+          {formatMessage({ id: 'onboarding.success.desc2' })}
         </p>
         <p className="onboarding-done__desc" aria-hidden={steps < 2}>
-          {formatMessage({ id: 'onboarding.done.desc2' })}
-        </p>
-        <p className="onboarding-done__desc" aria-hidden={steps < 3}>
           <Button
             onClick={() => {
               setIdentity();
             }}
             className="onboarding-done__button"
           >
-            {formatMessage({ id: 'onboarding.done.button' })}
+            {formatMessage({ id: 'onboarding.success.next' })}
           </Button>
         </p>
       </div>
