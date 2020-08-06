@@ -9,7 +9,7 @@ import { Identity } from '@app/store/types';
 import { Button, Icon } from '@app/theme';
 import ChooseLanguage from '@comp/Onboarding/ChooseLanguage';
 import DocumentType from '@comp/Onboarding/DocumentType';
-import SetUserID from '@comp/Onboarding/SetUserID';
+import RegistrationNumber from '@comp/Onboarding/RegistrationNumber';
 import ChoosePhone from '@comp/Onboarding/ChoosePhone';
 import Install from '@comp/Onboarding/Install';
 import PushNotifications from '@comp/Onboarding/PushNotifications';
@@ -166,7 +166,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
             {formatMessage({ id: `onboarding.paper.${documentType}.title` })}
           </h1>
           <BackButton />
-          <SetUserID
+          <RegistrationNumber
             documentType={documentType}
             className="onboarding__content"
             setId={setId}

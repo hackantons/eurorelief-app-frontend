@@ -1,12 +1,21 @@
 .document-type {
   justify-content: flex-start;
+
+  &__image {
+    margin: 0 auto var(--spacing) auto;
+    max-height: 15vh;
+  }
+
   &__descr {
     margin: var(--spacing) 0 var(--spacing-page) 0;
   }
 
   &__element {
     text-align: center;
-    margin-top: var(--spacing-page);
+
+    & + .document-type__element {
+      margin-top: var(--spacing-page);
+    }
   }
 
   &__button {

@@ -1,6 +1,11 @@
-.set-user-id {
+.registration-number {
   & > * + * {
-    margin-top: var(--spacing-page);
+    margin-top: var(--spacing-big);
+  }
+
+  &__image {
+    margin: 0 auto;
+    max-height: 20vh;
   }
 
   &__input {

@@ -3,11 +3,11 @@ import { useIntl } from 'react-intl';
 
 import { Loader, Message } from '@app/theme';
 
-import './SetUserID.css';
+import './RegistrationNumber.css';
 
 const MAX_NUMBER = 8;
 
-const SetUserID = ({
+const RegistrationNumber = ({
   className = '',
   documentType,
   setId,
@@ -38,19 +38,25 @@ const SetUserID = ({
   }, [prefix, number]);
 
   return (
-    <div className={`${className} set-user-id`}>
+    <div className={`${className} registration-number`}>
       <p>
         1.{' '}
         {formatMessage({ id: `onboarding.paper.${documentType}.description` })}
       </p>
+      <p>
+        <img
+          className="registration-number__image"
+          src={`/assets/static/${documentType}-mark.jpg`}
+        />
+      </p>
       <p>2. {formatMessage({ id: 'onboarding.paper.step2' })}</p>
       <div
-        className={`set-user-id__input ${
-          error !== '' ? 'set-user-id__input--error' : ''
+        className={`registration-number__input ${
+          error !== '' ? 'registration-number__input--error' : ''
         }`}
       >
         <input
-          className="set-user-id__input-prefix"
+          className="registration-number__input-prefix"
           type="number"
           placeholder="05"
           max={2}
@@ -73,9 +79,9 @@ const SetUserID = ({
             setPrefix(val);
           }}
         />
-        <span className="set-user-id__input-devider">/</span>
+        <span className="registration-number__input-devider">/</span>
         <input
-          className="set-user-id__input-number"
+          className="registration-number__input-number"
           type="text"
           placeholder={new Array(MAX_NUMBER).fill('0').join('')}
           max={MAX_NUMBER}
@@ -95,8 +101,8 @@ const SetUserID = ({
           }}
         />
         <Loader
-          className={`set-user-id__loader ${
-            loading ? 'set-user-id__loader--show' : ''
+          className={`registration-number__loader ${
+            loading ? 'registration-number__loader--show' : ''
           }`}
         />
       </div>
@@ -105,4 +111,4 @@ const SetUserID = ({
   );
 };
 
-export default SetUserID;
+export default RegistrationNumber;
