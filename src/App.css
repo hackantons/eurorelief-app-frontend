@@ -7,7 +7,14 @@
   flex-direction: column;
   padding: var(--spacing);
 
-  &__logo {
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logout {
+    margin-left: auto;
+    padding: 0.9em 0.5em;
   }
 
   &__content {

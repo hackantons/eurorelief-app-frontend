@@ -5,7 +5,6 @@ import { useStoreState, useActions } from 'unistore-hooks';
 import { State } from '@app/store/types';
 import { Button, ButtonGroup } from '@app/theme';
 import { actions } from '@app/store';
-import { settingsDB } from '@app/store/idb';
 
 import './Settings.css';
 
@@ -35,26 +34,8 @@ const Settings = ({ className = '' }: { className?: string }) => {
           className="notifications-info__button"
           onClick={() => alert('Noch nicht implementiert')}
         >
-          {formatMessage({ id: 'settings.change' })}
+          {formatMessage({ id: 'portal.settings.change' })}
         </Button>
-
-        <Button
-          className="notifications-info__button"
-          onClick={() => alert('Noch nicht implementiert')}
-        >
-          {formatMessage({ id: 'settings.leave' })}
-        </Button>
-        <button
-          onClick={() => {
-            settingsDB.set('jwt', '');
-            settingsDB.set('password', '');
-            settingsDB.set('user', '');
-            setIdentity(null);
-          }}
-        >
-          logout
-        </button>
-        <button onClick={() => setLocale('de')}>DE</button>
       </ButtonGroup>
     </div>
   );
