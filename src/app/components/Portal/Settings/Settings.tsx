@@ -3,15 +3,28 @@ import { useIntl } from 'react-intl';
 import { useStoreState, useActions } from 'unistore-hooks';
 
 import { State } from '@app/store/types';
-import { Button, ButtonGroup } from '@app/theme';
+import {
+  Button,
+  ButtonGroup,
+  Form,
+  FormControls,
+  FormField,
+  FormFieldset,
+  Message,
+  Modal,
+} from '@app/theme';
 import { actions } from '@app/store';
 
 import './Settings.css';
+import { postUser } from '@app/vendor/api';
 
 const Settings = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
   const { identity }: State = useStoreState(['identity']);
-  const { setIdentity, setLocale } = useActions(actions);
+  const { setIdentity } = useActions(actions);
+  const [modal, setModal] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string>('');
 
   return (
     <div className={`${className} settings`}>
@@ -21,9 +34,9 @@ const Settings = ({ className = '' }: { className?: string }) => {
           {
             phone: (
               <b className="settings__phone-number">
-                {identity
+                {identity.phone
                   ? identity.phone
-                  : formatMessage({ id: 'settings.noPhone' })}
+                  : formatMessage({ id: 'portal.settings.nophone' })}
               </b>
             ),
           }
@@ -32,11 +45,47 @@ const Settings = ({ className = '' }: { className?: string }) => {
       <ButtonGroup>
         <Button
           className="notifications-info__button"
-          onClick={() => alert('Noch nicht implementiert')}
+          onClick={() => setModal(true)}
         >
           {formatMessage({ id: 'portal.settings.change' })}
         </Button>
       </ButtonGroup>
+      {modal && (
+        <Modal
+          title={formatMessage({ id: 'onboarding.phone.title' })}
+          onClose={() => setModal(false)}
+        >
+          <Form
+            onSubmit={data => {
+              setLoading(true);
+              postUser({ phone: data.phone })
+                .then(() => {
+                  setLoading(false);
+                  setIdentity({ ...identity, phone: data.phone });
+                  setModal(false);
+                })
+                .catch(() => {
+                  setError(formatMessage({ id: 'form.error.general' }));
+                  setLoading(false);
+                });
+            }}
+          >
+            <FormFieldset stacked>
+              <FormField
+                name="phone"
+                label={formatMessage({ id: 'onboarding.phone.title' })}
+                value={identity.phone}
+              />
+              <FormControls>
+                <Button type="submit" loading={loading}>
+                  {formatMessage({ id: 'onboarding.phone.next' })}
+                </Button>
+              </FormControls>
+            </FormFieldset>
+          </Form>
+          {error !== '' && <Message type="error">{error}</Message>}
+        </Modal>
+      )}
     </div>
   );
 };

@@ -12,10 +12,6 @@ const ChooseLanguage = ({ className = '' }: { className?: string }) => {
   const { intl }: State = useStoreState(['intl']);
   const { setLocale } = useActions(actions);
 
-  React.useEffect(() => {
-    // todo: check for browser lang
-  }, []);
-
   return (
     <div className={`${className} choose-language`}>
       {Object.entries(locales).map(([key, locale]) => (

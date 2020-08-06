@@ -4,53 +4,50 @@
   right: 0;
   left: 0;
   top: 0;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-gray) transparent;
 
-  &__bkg {
-    position: absolute;
-    background-color: #000;
-    opacity: 0.7;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 0;
-    cursor: pointer;
-  }
-
-  &__window {
-    background: #fff;
-    max-height: 90vh;
-    width: 90vw;
-    max-width: var(--portal-max-width);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    @mixin box-shadow;
-    border-radius: 4px;
-    padding: var(--spacing);
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--c-gray) transparent;
-  }
-
-  &__header {
-    display: flex;
-    align-items: flex-start;
+  &__inner {
+    max-width: var(--app-max-width);
+    width: 100%;
+    padding: var(--spacing-page);
   }
 
   &__title {
-    margin-right: var(--spacing);
+    font-size: 2.8rem;
+    text-align: center;
   }
 
   &__close {
-    margin-left: auto;
+    position: absolute;
+    right: var(--spacing);
+    top: var(--spacing);
   }
 
   &__content {
-    margin: var(--spacing) 0;
+    margin: var(--spacing-page) 0;
 
     & > * + * {
       margin-top: 1rem;
+    }
+  }
+
+  &--red {
+    background-color: var(--c-primary-dark);
+    color: #fff;
+
+    .modal {
+      &__title {
+        color: #fff;
+      }
+
+      &__close {
+        color: #fff;
+      }
     }
   }
 }

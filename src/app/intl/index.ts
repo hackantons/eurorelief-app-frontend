@@ -6,7 +6,7 @@ export const locales: IntlLocales = {
   // @ts-ignore
   en: ['en-US', enMessages.default, 'English', false],
   // @ts-ignore
-  de: ['de-DE', null, 'Deutsch', false],
+  fr: ['fr-FR', null, 'Français', false],
   // @ts-ignore
   ar: ['ar-SY', null, 'عربى', true],
 };

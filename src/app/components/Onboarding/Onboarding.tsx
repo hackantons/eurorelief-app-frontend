@@ -36,8 +36,6 @@ const PROGRESS_STATES = {
   DONE: 'done',
 };
 
-// todo: rename next-buttons accoring to Mock
-
 const Onboarding = ({ className = '' }: { className?: string }) => {
   const [progress, setProgress] = React.useState<string>(
     Object.values(PROGRESS_STATES)[0]
@@ -56,17 +54,10 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
   const { setIdentity: setStoreIdentity } = useActions(actions);
 
   React.useEffect(() => {
-    if (!('serviceWorker' in navigator)) {
-      nextStep();
-    }
     Promise.all([navigator.serviceWorker.getRegistration(), getPushKey()]).then(
       ([reg, response]) => {
-        if (!reg) {
-          nextStep();
-        } else {
-          setSwRegistration(reg);
-          setApplicationServerKey(new Uint8Array(Object.values(response.data)));
-        }
+        setSwRegistration(reg);
+        setApplicationServerKey(new Uint8Array(Object.values(response.data)));
       }
     );
   }, []);

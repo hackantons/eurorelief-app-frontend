@@ -8,3 +8,5 @@ export const FETCH_STATES = {
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR',
 };
+
+export const COOKIE_LANG = 'lang';

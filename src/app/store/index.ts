@@ -6,8 +6,9 @@ import createStore, { Store } from 'unistore';
 import devtools from 'unistore/devtools';
 //import { settingsDB } from '@app/store/idb';
 import { getMessages, postMessagesSeen } from '@app/vendor/api';
-import { FETCH_STATES } from '@app/vendor/constants';
+import { COOKIE_LANG, FETCH_STATES } from '@app/vendor/constants';
 import dayjs from '@app/vendor/dayjs';
+import { setCookie } from '@app/vendor/cookie';
 
 const initialState: State = {
   intl: {
@@ -42,7 +43,7 @@ export const actions = (store: Store<State>) => ({
 
       require(`dayjs/locale/${intl}`);
       dayjs.locale(intl);
-      // todo: set "lang" cookie
+      setCookie(COOKIE_LANG, intl);
 
       store.setState({
         intl: {
