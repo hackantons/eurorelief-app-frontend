@@ -6,6 +6,8 @@ import Notifications from './Notifications/Notifications';
 
 import './Portal.css';
 
+// todo: check for push-subscription
+
 const Portal = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
   return (

@@ -3,9 +3,6 @@ export const isDev: boolean = window.location.href.indexOf('localhost') !== -1;
 export const nl2br = (str: string = '') =>
   str === '' ? '' : (str + '').replace(/(\r\n|\n\r|\r|\n)/g, '<br>$1');
 
-export const wait = (seconds: number = 500) =>
-  new Promise(resolve => setTimeout(() => resolve(), seconds));
-
 const ids: Object = {};
 export const unique = (key: string, scope: string = 'global'): string => {
   if (ids[scope] === undefined) {

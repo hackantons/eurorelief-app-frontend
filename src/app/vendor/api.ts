@@ -1,14 +1,9 @@
-import axios, { AxiosPromise, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-import { wait } from '@app/vendor/helpers';
-import { Identity } from '@app/store/types';
-
-const API_BASE = 'http://localhost:5080/';
-
-const mockedIdentity: Identity = {
-  id: '12345',
-  phone: '789456123',
-};
+const USE_LOCAL = false;
+const API_BASE = USE_LOCAL
+  ? 'http://localhost:5080/'
+  : 'https://api.camp.nico.dev/';
 
 export const getMessages = () => axios.get(`${API_BASE}messages/`);
 

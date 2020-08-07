@@ -11,7 +11,7 @@ import Portal from '@comp/Portal/Portal';
 import { Logo } from '@app/theme';
 import { doSignIn } from '@app/authentication/actions';
 import { fetchUser } from '@app/authentication/network';
-import { getCookie, setCookie } from '@app/vendor/cookie';
+import { getCookie } from '@app/vendor/cookie';
 import { COOKIE_LANG } from '@app/vendor/constants';
 import { locales } from '@app/intl';
 
