@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import Settings from './Settings/Settings';
-import Messages from './Messages/Messages';
+import Notifications from './Notifications/Notifications';
 
 import './Portal.css';
 
@@ -12,7 +12,7 @@ const Portal = ({ className = '' }: { className?: string }) => {
     <div className={`${className} portal`}>
       <h1>{formatMessage({ id: 'portal.title' })}</h1>
       <Settings className="portal__settings" />
-      <Messages className="portal__messages" />
+      <Notifications className="portal__notifications" />
     </div>
   );
 };

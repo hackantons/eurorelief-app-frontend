@@ -1,5 +1,5 @@
 .portal {
   & > * + * {
-    margin-top: var(--spacing-page);
+    margin-top: var(--spacing-page-double);
   }
 }

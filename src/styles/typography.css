@@ -59,3 +59,7 @@ p.text--big {
 p.text--center {
   text-align: center;
 }
+
+p.text--color-light {
+  color: var(--c-p-light);
+}

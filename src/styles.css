@@ -3,11 +3,12 @@
   --spacing-half: 0.5rem;
   --spacing-big: 1.5rem;
   --spacing-page: 5vh;
+  --spacing-page-double: 10vh;
 
   --transition-speed: 100ms;
 
   --c-p: #1d1d1b;
-  --c-p-light: #5a667a;
+  --c-p-light: #a7a6ad;
   --c-h: #000;
   --c-bkg: #fff;
 
@@ -23,6 +24,7 @@
 
   --c-gray: #c7c8c9;
   --c-gray-light: #d4d5d6;
+  --c-gray-bkg: #eeeff0;
   --c-gray-dark: #989898;
 
   --app-max-width: 800px;

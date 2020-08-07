@@ -17,7 +17,7 @@ const initialState: State = {
     loading: '',
   },
   identity: null,
-  messages: {
+  notifications: {
     state: FETCH_STATES.PENDING,
     data: [],
     error: '',
@@ -56,18 +56,18 @@ export const actions = (store: Store<State>) => ({
     });
   },
   setIdentity: (state, identity: Identity) => store.setState({ identity }),
-  updateMessages: state => {
+  updateNotifications: state => {
     store.setState({
-      messages: {
-        ...state.messages,
+      notifications: {
+        ...state.notifications,
         state: FETCH_STATES.PENDING,
       },
     });
     getMessages()
       .then(res =>
         store.setState({
-          messages: {
-            ...state.messages,
+          notifications: {
+            ...state.notifications,
             state: FETCH_STATES.SUCCESS,
             data: res.data,
           },
@@ -75,24 +75,16 @@ export const actions = (store: Store<State>) => ({
       )
       .catch(() =>
         store.setState({
-          messages: {
-            ...state.messages,
+          notifications: {
+            ...state.notifications,
             state: FETCH_STATES.ERROR,
             error: 'form.error.general',
           },
         })
       );
   },
-  setMessagesAsSeen: (state, uuids) => {
-    postMessagesSeen(uuids).then(res => {
-      store.setState({
-        messages: {
-          ...state.messages,
-          state: FETCH_STATES.SUCCESS,
-          data: res.data,
-        },
-      });
-    });
+  setNotificationsAsSeen: (state, uuids) => {
+    postMessagesSeen(uuids);
   },
 });
 

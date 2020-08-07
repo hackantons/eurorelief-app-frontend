@@ -1,5 +1,5 @@
 import { IntlMessages } from '@app/intl/types';
-import { Message } from '@comp/Portal/Messages/types';
+import { Notification } from '@comp/Portal/Notifications/types';
 
 export interface Identity {
   id: string;
@@ -13,9 +13,9 @@ export interface State {
     loading: string;
   };
   identity: Identity;
-  messages: {
+  notifications: {
     state: string;
-    data: Array<Message>;
+    data: Array<Notification>;
     error: string;
   };
 }

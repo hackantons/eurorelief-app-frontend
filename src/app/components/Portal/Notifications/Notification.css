@@ -1,0 +1,24 @@
+.notification {
+  display: flex;
+  align-items: center;
+
+  &__content {
+    & > * + * {
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__icon {
+    font-size: 2rem;
+    color: var(--c-primary);
+    margin-right: 1rem;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__date {
+    color: var(--c-p-light);
+  }
+}
