@@ -37,9 +37,13 @@ const Logout = ({ className = '' }: { className: string }) => {
           <p className="logout-modal__button">
             <Button
               onClick={() => {
-                settingsDB.set('jwt', '');
-                settingsDB.set('password', '');
-                settingsDB.set('user', '');
+                Promise.all([
+                  settingsDB.delete('jwt'),
+                  settingsDB.delete('password'),
+                  settingsDB.delete('user'),
+                ]).then(() => {
+                  /* cleared */
+                });
                 setIdentity(null);
               }}
             >

@@ -17,7 +17,7 @@ registerRoute(
 //new NavigationRoute('/index.html');
 
 // The precache routes for workbox-webpack-plugin
-//precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(self.__WB_MANIFEST);
 
 // listen to the install event
 self.addEventListener('install', event => console.log('SW installed', event));

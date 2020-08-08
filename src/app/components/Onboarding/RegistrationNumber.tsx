@@ -82,7 +82,7 @@ const RegistrationNumber = ({
         <span className="registration-number__input-devider">/</span>
         <input
           className="registration-number__input-number"
-          type="text"
+          type="number"
           placeholder={new Array(MAX_NUMBER).fill('0').join('')}
           max={MAX_NUMBER}
           name="number"

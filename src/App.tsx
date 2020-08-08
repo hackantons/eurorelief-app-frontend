@@ -17,6 +17,7 @@ import { locales } from '@app/intl';
 
 import './App.css';
 import Logout from '@comp/Logout';
+import { settingsDB } from '@app/store/idb';
 
 const App = () => {
   const [appInit, setAppInit] = React.useState<boolean>(false);
@@ -32,7 +33,9 @@ const App = () => {
             setIdentity(identity);
             setAppInit(true);
           })
-          .catch(() => setAppInit(true))
+          .catch(() => {
+            settingsDB.delete('jwt').then(() => setAppInit(true));
+          })
       )
       .catch(() => setAppInit(true));
   }, []);

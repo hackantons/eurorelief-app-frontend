@@ -105,15 +105,19 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
                       fetchUser()
                         .then(identity => resolve(identity))
                         .catch(() =>
-                          reject(formatMessage({ id: 'form.error.general' }))
+                          reject(
+                            formatMessage({ id: 'form.error.general' }) + ' (3)'
+                          )
                         );
                     })
                     .catch(() =>
-                      reject(formatMessage({ id: 'form.error.general' }))
+                      reject(
+                        formatMessage({ id: 'form.error.general' }) + ' (2)'
+                      )
                     );
                 })
                 .catch(() =>
-                  reject(formatMessage({ id: 'form.error.general' }))
+                  reject(formatMessage({ id: 'form.error.general' }) + ' (1)')
                 );
             })
             .catch(() =>
