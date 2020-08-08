@@ -90,10 +90,11 @@ module.exports = (env, argv) => {
               fingerprints: false,
               icons: [
                 {
-                  src: path.resolve(`${dirSrc}/static/logos/er-favicon.png`),
+                  src: path.resolve(`${dirSrc}/static/logos/app-icon.png`),
                   sizes: [96, 128, 192, 256, 384, 512],
-                  destination: path.join('assets', 'icon'),
+                  destination: path.join('assets', 'pwa-icon'),
                   ios: true,
+                  purpose: 'maskable',
                 },
               ],
             }),

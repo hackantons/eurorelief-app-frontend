@@ -1,7 +1,7 @@
 {
-  "title": "Refugee Camp",
-  "short": "Camp",
+  "title": "Eurorelief PWA",
+  "short": "Eurorelief",
   "description": "A Progressive Web App for refugee camps",
   "color": "#ce171f",
-  "colorbkg": "#ffffff"
+  "colorbkg": "#ce171f"
 }
