@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { Button, Message } from '@app/theme';
+import { Message } from '@app/theme';
 import { useIntl } from 'react-intl';
-import { getPushKey, putSubscription } from '@app/vendor/api';
 
 import './PushNotifications.css';
 
@@ -25,7 +24,8 @@ const PushNotifications = ({
     if (
       !('serviceWorker' in navigator) ||
       !swRegistration ||
-      !applicationServerKey
+      !applicationServerKey ||
+      !('pushManger' in swRegistration)
     ) {
       nextStep();
     }

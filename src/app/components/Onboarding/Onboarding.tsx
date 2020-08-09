@@ -24,7 +24,8 @@ import {
 import { doSignIn } from '@app/authentication/actions';
 
 import './Onboarding.css';
-import { getPushKey } from '@app/vendor/api';
+import { getPushKey, putSubscription } from '@app/vendor/api';
+import { subscribeToPush } from '@app/vendor/helpers';
 
 const PROGRESS_STATES = {
   WELCOME: 'welcome',
@@ -248,6 +249,16 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
                   // @ts-ignore
                   window.installPrompt.prompt().then(() => {
                     setButtonLoading(false);
+                    nextStep();
+                  });
+              } else if (progress === PROGRESS_STATES.PUSH) {
+                subscribeToPush(swRegistration, applicationServerKey)
+                  .then(() => {
+                    setButtonLoading(false);
+                    nextStep();
+                  })
+                  .catch(() => {
+                    alert(formatMessage({ id: 'form.error.general' }));
                     nextStep();
                   });
               } else {

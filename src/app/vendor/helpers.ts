@@ -1,3 +1,5 @@
+import { putSubscription } from '@app/vendor/api';
+
 export const isDev: boolean = window.location.href.indexOf('localhost') !== -1;
 
 export const nl2br = (str: string = '') =>
@@ -19,3 +21,26 @@ export const unique = (key: string, scope: string = 'global'): string => {
   ids[scope].push(id);
   return id;
 };
+
+export const subscribeToPush = (swRegistration, applicationServerKey) =>
+  new Promise((resolve, reject) => {
+    if (
+      swRegistration &&
+      'pushManager' in swRegistration &&
+      applicationServerKey
+    ) {
+      swRegistration.pushManager
+        .subscribe({
+          userVisibleOnly: true,
+          applicationServerKey,
+        })
+        .then(subscription =>
+          putSubscription(subscription)
+            .then(() => resolve())
+            .catch(() => reject())
+        )
+        .catch(() => reject());
+    } else {
+      reject();
+    }
+  });

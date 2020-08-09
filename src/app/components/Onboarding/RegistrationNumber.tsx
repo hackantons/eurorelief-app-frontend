@@ -5,7 +5,7 @@ import { Loader, Message } from '@app/theme';
 
 import './RegistrationNumber.css';
 
-const MAX_NUMBER = 8;
+const MAX_NUMBER = 10;
 
 const RegistrationNumber = ({
   className = '',
