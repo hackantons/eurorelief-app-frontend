@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs';
-import { DefinePlugin } from 'webpack';
 
 require('dotenv').config();
 import app from './app.json';
@@ -10,8 +9,9 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-import { InjectManifest } from 'workbox-webpack-plugin';
+import workboxPlugin from 'workbox-webpack-plugin';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
+import { DefinePlugin } from 'webpack';
 
 module.exports = (env, argv) => {
   const dirDist = path.resolve(__dirname, 'dist');
@@ -98,10 +98,15 @@ module.exports = (env, argv) => {
                 },
               ],
             }),
-            new InjectManifest({
+            new workboxPlugin.InjectManifest({
               swSrc: './src/service-worker.js',
               include: [/\.html$/, /\.js$/, /\.css$/],
               maximumFileSizeToCacheInBytes: 5000000,
+            }),
+            new DefinePlugin({
+              API_BASE: JSON.stringify(
+                process.env.API_BASE || 'https://api.camp.nico.dev/'
+              ),
             }),
           ]
         : []),

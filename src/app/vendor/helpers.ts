@@ -34,11 +34,16 @@ export const subscribeToPush = (swRegistration, applicationServerKey) =>
           userVisibleOnly: true,
           applicationServerKey,
         })
-        .then(subscription =>
-          putSubscription(subscription)
+        .then(subscription => {
+          subscription = subscription.toJSON();
+          putSubscription({
+            endpoint: subscription.endpoint,
+            p256dh: subscription.keys.p256dh,
+            auth: subscription.keys.auth,
+          })
             .then(() => resolve())
-            .catch(() => reject())
-        )
+            .catch(() => reject());
+        })
         .catch(() => reject());
     } else {
       reject();

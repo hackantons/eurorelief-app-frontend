@@ -57,6 +57,10 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
   React.useEffect(() => {
     Promise.all([navigator.serviceWorker.getRegistration(), getPushKey()]).then(
       ([reg, response]) => {
+        console.log({
+          reg,
+          appKey: new Uint8Array(Object.values(response.data)),
+        });
         setSwRegistration(reg);
         setApplicationServerKey(new Uint8Array(Object.values(response.data)));
       }

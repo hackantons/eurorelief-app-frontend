@@ -13,3 +13,6 @@ declare global {
     installPrompt: BeforeInstallPromptEvent;
   }
 }
+
+declare var API_BASE: string;
+declare var BLAA: string;

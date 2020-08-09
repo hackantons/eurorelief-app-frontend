@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl';
 
 import { Button } from '@app/theme';
 import { getPushKey } from '@app/vendor/api';
+import { subscribeToPush } from '@app/vendor/helpers';
 
 import './PushBanner.css';
-import { subscribeToPush } from '@app/vendor/helpers';
 
 const PushBanner = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();

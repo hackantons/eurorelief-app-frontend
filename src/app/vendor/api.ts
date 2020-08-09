@@ -1,10 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
 
-const USE_LOCAL = false;
-const API_BASE = USE_LOCAL
-  ? 'http://localhost:5080/'
-  : 'https://api.camp.nico.dev/';
-
 export const getMessages = () => axios.get(`${API_BASE}messages/`);
 
 export const postMessagesSeen = (uuids: Array<string>) =>
