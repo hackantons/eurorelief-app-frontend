@@ -17,6 +17,10 @@ button {
     background-color: var(--c-gray-light);
   }
 
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
   &--bkg-red {
     background-color: var(--c-primary);
     color: #fff;

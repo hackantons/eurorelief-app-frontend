@@ -16,3 +16,4 @@ export { default as FormControls } from './Form/FormControls';
 export { default as InputText } from './Form/InputText';
 export { default as InputSelect } from './Form/InputSelect';
 export { default as InputTextarea } from './Form/InputTextarea';
+export { default as InputRegnumber } from './Form/InputRegnumber';

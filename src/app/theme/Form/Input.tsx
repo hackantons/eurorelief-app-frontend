@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
+import InputRegnumber from './Input/Regnumber';
 
 import './Input.css';
 
@@ -24,7 +25,7 @@ const Input = ({
   classNameLabel?: string;
   classNameInput?: string;
   label: string;
-  type?: 'text' | 'textarea' | 'select';
+  type?: 'text' | 'textarea' | 'select' | 'regnumber';
   subtype?: string;
   value?: string;
   choices?: {
@@ -75,6 +76,17 @@ const Input = ({
             </option>
           ))}
         </select>
+      )}
+      {type === 'regnumber' && (
+        <React.Fragment>
+          <input type="hidden" {...inputProps} {...(value ? { value } : {})} />
+          <InputRegnumber
+            name={name}
+            value={value ? value : ''}
+            loading={props.disabled}
+            setValue={setValue}
+          />
+        </React.Fragment>
       )}
       {error !== '' && <span className="input__error">{error}</span>}
     </div>

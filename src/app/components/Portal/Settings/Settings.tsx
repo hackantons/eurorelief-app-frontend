@@ -10,6 +10,7 @@ import {
   FormControls,
   FormField,
   FormFieldset,
+  InputRegnumber,
   Message,
   Modal,
 } from '@app/theme';
@@ -57,6 +58,8 @@ const Settings = ({ className = '' }: { className?: string }) => {
         >
           <Form
             onSubmit={data => {
+              console.log('DATA', data);
+              return;
               setLoading(true);
               postUser({ phone: data.phone })
                 .then(() => {
@@ -71,6 +74,11 @@ const Settings = ({ className = '' }: { className?: string }) => {
             }}
           >
             <FormFieldset stacked>
+              <FormField
+                name="regnumber"
+                label={formatMessage({ id: 'portal.settings.regnr' })}
+                component={InputRegnumber}
+              />
               <FormField
                 name="phone"
                 label={formatMessage({ id: 'onboarding.phone.title' })}

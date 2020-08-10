@@ -49,6 +49,7 @@
   "portal.title": "Hello",
   "portal.logout": "Logout",
   "portal.settings.phone": "Currenty registered Phone Number {phone}",
+  "portal.settings.regnr": "Registration Number",
   "portal.settings.nophone": "Not set",
   "portal.settings.change": "Change",
   "portal.settings.left": "Left Lesvos",
