@@ -58,17 +58,21 @@ const Settings = ({ className = '' }: { className?: string }) => {
         >
           <Form
             onSubmit={data => {
-              console.log('DATA', data);
-              return;
               setLoading(true);
-              postUser({ phone: data.phone })
+              postUser({ phone: data.phone, regnumber: data.regnumber })
                 .then(() => {
                   setLoading(false);
                   setIdentity({ ...identity, phone: data.phone });
                   setModal(false);
                 })
-                .catch(() => {
-                  setError(formatMessage({ id: 'form.error.general' }));
+                .catch(e => {
+                  if (e.response.data.data.status === 403) {
+                    setError(
+                      formatMessage({ id: 'portal.settings.change.forbidden' })
+                    );
+                  } else {
+                    setError(formatMessage({ id: 'form.error.general' }));
+                  }
                   setLoading(false);
                 });
             }}

@@ -52,6 +52,7 @@
   "portal.settings.regnr": "Registration Number",
   "portal.settings.nophone": "Not set",
   "portal.settings.change": "Change",
+  "portal.settings.change.forbidden": "Registration Number does not match your account",
   "portal.settings.left": "Left Lesvos",
   "push.disabled.title": "Notifications are disabled.",
   "push.disabled.desc": "Activate Notifications now and never miss a Ticket.",
