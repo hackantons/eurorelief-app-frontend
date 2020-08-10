@@ -136,7 +136,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
 
   const updatePhone = (): Promise<Identity> =>
     new Promise((resolve, reject) =>
-      updateUser({ phone })
+      updateUser({ phone, regnumber: id })
         .then(identity => resolve(identity))
         .catch(() => reject(formatMessage({ id: 'onboarding.phone.error' })))
     );

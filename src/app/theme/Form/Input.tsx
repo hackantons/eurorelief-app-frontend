@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import cn from 'classnames';
+import React from 'react';
 import InputRegnumber from './Input/Regnumber';
 
 import './Input.css';
@@ -17,6 +16,7 @@ const Input = ({
   choices = {},
   error = '',
   onChange = () => {},
+  onValueChanged = () => {},
   ...props
 }: {
   name: string;
@@ -33,9 +33,11 @@ const Input = ({
   };
   error?: string;
   onChange?: Function;
+  onValueChanged?: Function;
   [k: string]: any;
 }) => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = React.useState(initialValue);
+  const prevValue = React.useRef(null);
 
   const inputProps = {
     ...props,
@@ -54,6 +56,11 @@ const Input = ({
       setValue(e.target.value);
     },
   };
+
+  React.useEffect(() => {
+    onValueChanged && onValueChanged(value, prevValue.current);
+    prevValue.current = value;
+  }, [value]);
 
   return (
     <div
@@ -85,6 +92,7 @@ const Input = ({
             value={value ? value : ''}
             loading={props.disabled}
             setValue={setValue}
+            {...(inputProps.onChange ? { onChange: inputProps.onChange } : {})}
           />
         </React.Fragment>
       )}
