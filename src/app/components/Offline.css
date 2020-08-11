@@ -11,6 +11,7 @@
   will-change: transform;
   @mixin transition transform;
   transform: translateY(0);
+  z-index: 9999;
 
   &[aria-hidden='true'] {
     transform: translateY(100%);
