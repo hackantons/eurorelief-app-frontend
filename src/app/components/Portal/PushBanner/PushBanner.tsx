@@ -1,6 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { State } from '@app/store/types';
+import { useStoreState, useActions } from 'unistore-hooks';
 import { Button } from '@app/theme';
 import { getPushKey } from '@app/vendor/api';
 import { subscribeToPush } from '@app/vendor/helpers';
@@ -14,6 +16,7 @@ const PushBanner = ({ className = '' }: { className?: string }) => {
   const [applicationServerKey, setApplicationServerKey] = React.useState<any>(
     null
   );
+  const { offline }: State = useStoreState(['offline']);
 
   React.useEffect(() => {
     if ('serviceWorker' in navigator && 'Notification' in window) {
@@ -48,7 +51,7 @@ const PushBanner = ({ className = '' }: { className?: string }) => {
   return (
     <Button
       className={`${className} push-banner`}
-      aria-hidden={hidden}
+      aria-hidden={hidden || offline}
       icon="mdi/alert"
       red
       onClick={() => {

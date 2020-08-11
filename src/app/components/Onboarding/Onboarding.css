@@ -3,6 +3,12 @@
     text-align: center;
   }
 
+  &__offline {
+    & > * + * {
+      margin-top: var(--spacing-big);
+    }
+  }
+
   &__content {
     flex-grow: 1;
     display: flex;

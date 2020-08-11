@@ -18,6 +18,7 @@ export interface State {
     data: Array<Notification>;
     error: string;
   };
+  offline: boolean;
 }
 
 export interface Actions {}

@@ -27,35 +27,4 @@
   &[aria-hidden='true'] {
     transform: translateY(100%);
   }
-
-  /*
-  position: fixed;
-  display: flex;
-  align-items: center;
-
-  background-color: var(--c-primary);
-  color: #fff;
-  text-align: left;
-  padding: var(--spacing) var(--spacing-big);
-
-  will-change: transform;
-  @mixin transition transform;
-  transform: translateY(0);
-
-  &[aria-hidden='true'] {
-    transform: translateY(100%);
-  }
-
-  &__icon {
-    margin-left: var(--spacing-big);
-    font-size: 2.5rem;
-  }
-
-  &__desc {
-    & > * + * {
-      margin-top: 0.5rem;
-    }
-  }
-
-   */
 }

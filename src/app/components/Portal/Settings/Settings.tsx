@@ -21,7 +21,7 @@ import { postUser } from '@app/vendor/api';
 
 const Settings = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
-  const { identity }: State = useStoreState(['identity']);
+  const { identity, offline }: State = useStoreState(['identity', 'offline']);
   const { setIdentity } = useActions(actions);
   const [modal, setModal] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -46,7 +46,11 @@ const Settings = ({ className = '' }: { className?: string }) => {
       <ButtonGroup>
         <Button
           className="notifications-info__button"
-          onClick={() => setModal(true)}
+          onClick={() =>
+            offline
+              ? alert(formatMessage({ id: 'portal.settings.change.offline' }))
+              : setModal(true)
+          }
         >
           {formatMessage({ id: 'portal.settings.change' })}
         </Button>

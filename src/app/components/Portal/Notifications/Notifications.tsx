@@ -1,7 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import dayjs from '@app/vendor/dayjs';
 import { State } from '@app/store/types';
 import { useStoreState, useActions } from 'unistore-hooks';
 import { FETCH_STATES } from '@app/vendor/constants';

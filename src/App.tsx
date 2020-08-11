@@ -18,12 +18,13 @@ import { locales } from '@app/intl';
 import './App.css';
 import Logout from '@comp/Logout';
 import { settingsDB } from '@app/store/idb';
+import Offline from '@comp/Offline';
 
 const App = () => {
   const [appInit, setAppInit] = React.useState<boolean>(false);
 
   const { intl, identity }: State = useStoreState(['intl', 'identity']);
-  const { setIdentity, setLocale } = useActions(actions);
+  const { setIdentity, setLocale, setOffline } = useActions(actions);
 
   React.useEffect(() => {
     doSignIn()
@@ -34,7 +35,14 @@ const App = () => {
             setAppInit(true);
           })
           .catch(() => {
-            settingsDB.delete('jwt').then(() => setAppInit(true));
+            if (navigator.onLine) {
+              settingsDB.delete('jwt').then(() => setAppInit(true));
+            } else {
+              settingsDB.get('identity').then(identity => {
+                setIdentity(identity);
+                setAppInit(true);
+              });
+            }
           })
       )
       .catch(() => setAppInit(true));
@@ -48,6 +56,12 @@ const App = () => {
     }
   });
 
+  React.useEffect(() => {
+    setOffline(!navigator.onLine);
+    window.addEventListener('online', () => setOffline(false), false);
+    window.addEventListener('offline', () => setOffline(true), false);
+  });
+
   return (
     <IntlProvider locale={intl.locale} messages={intl.messages}>
       <div className="app" lang={intl.locale}>
@@ -57,7 +71,10 @@ const App = () => {
         </div>
         {appInit ? (
           identity ? (
-            <Portal className="app__content app__content--portal" />
+            <React.Fragment>
+              <Offline className="app__offline" />
+              <Portal className="app__content app__content--portal" />
+            </React.Fragment>
           ) : (
             <Onboarding className="app__content app__content--onboarding" />
           )
