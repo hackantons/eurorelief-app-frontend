@@ -1,10 +1,18 @@
 import { skipWaiting, clientsClaim } from 'workbox-core';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute, NavigationRoute } from 'workbox-routing';
-import { CacheFirst, NetworkFirst } from 'workbox-strategies';
+import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
 skipWaiting();
 clientsClaim();
+
+registerRoute(
+  new RegExp(/^https:\/\/i18n\.camp\.nico\.dev/),
+  new StaleWhileRevalidate({
+    cacheName: 'translations-cache',
+  }),
+  'GET'
+);
 
 registerRoute(
   new RegExp(/\.(?:png|gif|jpg|svg|ico|webp)$/),
