@@ -36,29 +36,11 @@
   }
 }
 
-/*
-.app,
-.app-login {
-  background-color: #fff;
-  border-radius: 0.25rem;
-  //margin: 0 auto;
-  @mixin box-shadow;
+html[dir='rtl'] {
+  .app {
+    &__logout {
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
 }
-
-.app {
-  max-width: 800px;
-  width: 90%;
-  margin-top: var(--spacing);
-}
-
-.app-loader {
-  margin-top: 20vh;
-}
-
-.app-login {
-  max-width: 400px;
-  margin-top: 10vh;
-  width: 90%;
-  padding: var(--spacing);
-}
-*/

@@ -52,3 +52,12 @@
     background-color: var(--c-gray-bkg);
   }
 }
+
+html[dir='rtl'] {
+  .notifications {
+    &__badge {
+      margin-right: 0.5em;
+      margin-left: 0;
+    }
+  }
+}

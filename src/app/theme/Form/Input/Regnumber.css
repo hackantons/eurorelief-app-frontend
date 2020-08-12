@@ -75,3 +75,14 @@
     }
   }
 }
+
+html[dir='rtl'] {
+  .regnumber {
+    &__input {
+      flex-direction: row-reverse;
+      input {
+        text-align: left;
+      }
+    }
+  }
+}
