@@ -56,6 +56,7 @@
   "portal.settings.change": "Change",
   "portal.settings.change.offline": "You are offline. Please try to get back online to change your phone number",
   "portal.settings.change.forbidden": "Registration Number does not match your account",
+  "portal.settings.change.invalidNumber": "Your phone number could not be validated. Please make sure your using the international phone number that starts with a +",
   "portal.settings.left": "Left Lesvos",
   "push.disabled.title": "Notifications are disabled.",
   "push.disabled.desc": "Activate Notifications now and never miss a Ticket.",

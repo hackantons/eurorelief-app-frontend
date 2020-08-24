@@ -49,3 +49,20 @@ export const subscribeToPush = (swRegistration, applicationServerKey) =>
       reject();
     }
   });
+
+export const isValidPhoneNumber = (number: string): boolean => {
+  const regex = /^\+((?:9[679]|8[035789]|6[789]|5[90]|42|3[578]|2[1-689])|9[0-58]|8[1246]|6[0-6]|5[1-8]|4[013-9]|3[0-469]|2[70]|7|1)(?:\W*\d){0,13}\d$/gm;
+  let m;
+  let r: boolean = false;
+
+  while ((m = regex.exec(number)) !== null) {
+    if (m.index === regex.lastIndex) {
+      regex.lastIndex++;
+    }
+
+    m.forEach(() => {
+      r = true;
+    });
+  }
+  return r;
+};
