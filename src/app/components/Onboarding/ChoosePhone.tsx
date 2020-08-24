@@ -3,6 +3,7 @@ import { InputText, Message } from '@app/theme';
 import { useIntl } from 'react-intl';
 
 import './ChoosePhone.css';
+import { isValidPhoneNumber } from '@app/vendor/helpers';
 
 const ChoosePhone = ({
   className = '',
@@ -16,6 +17,11 @@ const ChoosePhone = ({
   loading: boolean;
 }) => {
   const { formatMessage } = useIntl();
+  const [number, setNumber] = React.useState<string>('');
+
+  React.useEffect(() => {
+    setPhone(number);
+  }, [number]);
 
   return (
     <div className={`${className} choose-phone`}>
@@ -24,7 +30,10 @@ const ChoosePhone = ({
         name="phone"
         label={formatMessage({ id: 'onboarding.phone.label' })}
         disabled={loading}
-        onInput={e => setPhone((e.target as HTMLInputElement).value)}
+        value={number}
+        onKeyup={e => {
+          setNumber((e.target as HTMLInputElement).value);
+        }}
       />
       {error !== '' && <Message type="error">{error}</Message>}
     </div>

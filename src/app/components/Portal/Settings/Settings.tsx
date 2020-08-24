@@ -63,6 +63,7 @@ const Settings = ({ className = '' }: { className?: string }) => {
           <Form
             onSubmit={data => {
               setLoading(true);
+              setError('');
               postUser({ phone: data.phone, regnumber: data.regnumber })
                 .then(() => {
                   setLoading(false);
@@ -70,12 +71,19 @@ const Settings = ({ className = '' }: { className?: string }) => {
                   setModal(false);
                 })
                 .catch(e => {
-                  if (e.response.data.data.status === 403) {
+                  if (
+                    e.response.data.data.status === 403 ||
+                    e.response.data.data.status === 500
+                  ) {
                     setError(
                       formatMessage({ id: 'portal.settings.change.forbidden' })
                     );
-                  } else {
-                    setError(formatMessage({ id: 'form.error.general' }));
+                  } else if (e.response.data.data.status === 418) {
+                    setError(
+                      formatMessage({
+                        id: 'portal.settings.change.invalidNumber',
+                      })
+                    );
                   }
                   setLoading(false);
                 });

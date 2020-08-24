@@ -25,7 +25,7 @@ import { doSignIn } from '@app/authentication/actions';
 
 import './Onboarding.css';
 import { getPushKey, putSubscription } from '@app/vendor/api';
-import { subscribeToPush } from '@app/vendor/helpers';
+import { isValidPhoneNumber, subscribeToPush } from '@app/vendor/helpers';
 
 const PROGRESS_STATES = {
   WELCOME: 'welcome',
@@ -132,11 +132,23 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
     );
 
   const updatePhone = (): Promise<Identity> =>
-    new Promise((resolve, reject) =>
-      updateUser({ phone, regnumber: id })
-        .then(identity => resolve(identity))
-        .catch(() => reject(formatMessage({ id: 'onboarding.phone.error' })))
-    );
+    new Promise((resolve, reject) => {
+      if (phone !== '' && !isValidPhoneNumber(phone)) {
+        reject(formatMessage({ id: 'portal.settings.change.invalidNumber' }));
+      } else {
+        updateUser({ phone, regnumber: id })
+          .then(identity => resolve(identity))
+          .catch(e => {
+            if (e.response.data.data.status === 418) {
+              reject(formatMessage({ id: 'onboarding.phone.error' }));
+            } else {
+              reject(
+                formatMessage({ id: 'portal.settings.change.invalidNumber' })
+              );
+            }
+          });
+      }
+    });
 
   return (
     <div className={`${className} onboarding`}>

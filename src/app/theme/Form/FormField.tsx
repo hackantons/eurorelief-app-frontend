@@ -26,27 +26,22 @@ const FormField = ({
   classNameInput?: string;
   wide?: boolean;
   [k: string]: any;
-}) => {
-  const [uniqueId] = React.useState(() => unique(name));
-  const [uniqueName] = React.useState(() => unique(name, 'form'));
-
-  return (
-    <ConnectForm>
-      {({ register, errors }) => {
-        return component({
-          ...props,
-          name: uniqueName,
-          id: uniqueId,
-          label,
-          ref: register(fieldRegister),
-          className: className,
-          classNameInput: classNameInput,
-          classNameLabel: classNameLabel,
-          error: errors[name] ? errors[name].message : '',
-        });
-      }}
-    </ConnectForm>
-  );
-};
+}) => (
+  <ConnectForm>
+    {({ register, errors }) => {
+      return component({
+        ...props,
+        name,
+        id: name,
+        label,
+        ref: register(fieldRegister),
+        className: className,
+        classNameInput: classNameInput,
+        classNameLabel: classNameLabel,
+        error: errors[name] ? errors[name].message : '',
+      });
+    }}
+  </ConnectForm>
+);
 
 export default FormField;
