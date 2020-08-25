@@ -20,9 +20,10 @@ export const postCampID = (number: string) =>
     id: number,
   });
 
-export const putUser = (uuid: string) =>
+export const putUser = (uuid: string, lang: string = '') =>
   axios.put(`${API_BASE}user/`, {
     uuid,
+    ...(lang !== '' ? { lang } : {}),
   });
 
 export const getLanguageStrings = (locale: string): Promise<AxiosResponse> =>

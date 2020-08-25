@@ -31,10 +31,11 @@ export const signIn = (uuid: string, password: string): Promise<string> =>
   );
 
 export const createUser = (
-  uuid: string
+  uuid: string,
+  lang: string = ''
 ): Promise<{ user: string; password: string }> =>
   new Promise((resolve, reject) =>
-    putUser(uuid)
+    putUser(uuid, lang)
       .then(res => resolve(res.data))
       .catch(e => reject(e))
   );
