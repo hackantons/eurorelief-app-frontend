@@ -7,6 +7,7 @@ import './Logout.css';
 import { settingsDB } from '@app/store/idb';
 import { actions } from '@app/store';
 import { useActions } from 'unistore-hooks';
+import { postUserLogout } from '@app/vendor/api';
 
 const Logout = ({ className = '' }: { className: string }) => {
   const { formatMessage } = useIntl();
@@ -37,14 +38,16 @@ const Logout = ({ className = '' }: { className: string }) => {
           <p className="logout-modal__button">
             <Button
               onClick={() => {
-                Promise.all([
-                  settingsDB.delete('jwt'),
-                  settingsDB.delete('password'),
-                  settingsDB.delete('user'),
-                ]).then(() => {
-                  /* cleared */
+                postUserLogout().then(() => {
+                  Promise.all([
+                    settingsDB.delete('jwt'),
+                    settingsDB.delete('password'),
+                    settingsDB.delete('user'),
+                  ]).then(() => {
+                    /* cleared */
+                  });
+                  setIdentity(null);
                 });
-                setIdentity(null);
               }}
             >
               {formatMessage({ id: 'portal.logout' })}
