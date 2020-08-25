@@ -9,6 +9,8 @@ export const getUser = () => axios.get(`${API_BASE}user/`);
 
 export const postUser = data => axios.post(`${API_BASE}user/`, data);
 
+export const postUserLogout = () => axios.post(`${API_BASE}user/logout/`);
+
 export const postAuthSignIn = (uuid: string, password: string) =>
   axios.post(`${API_BASE}auth/signin/`, {
     uuid,
