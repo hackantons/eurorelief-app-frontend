@@ -53,7 +53,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
   );
   const { formatMessage } = useIntl();
   const { setIdentity: setStoreIdentity } = useActions(actions);
-  const { offline }: State = useStoreState(['offline']);
+  const { offline, intl }: State = useStoreState(['offline', 'intl']);
 
   React.useEffect(() => {
     Promise.all([navigator.serviceWorker.getRegistration(), getPushKey()]).then(
@@ -95,7 +95,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
     new Promise((resolve, reject) =>
       resolveCampID(id)
         .then(uuid => {
-          createUser(uuid)
+          createUser(uuid, intl.locale)
             .then(({ user, password }) => {
               Promise.all([
                 settingsDB.set('user', user),
