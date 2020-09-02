@@ -5,15 +5,15 @@ import './app/vendor/a11y';
 
 isDev && document.body.classList.add('dev');
 
-if (!isDev) {
-  'serviceWorker' in navigator &&
-    navigator.serviceWorker.register('service-worker.js');
+//if (!isDev) {
+'serviceWorker' in navigator &&
+  navigator.serviceWorker.register('service-worker.js');
 
+// @ts-ignore
+window.installPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
   // @ts-ignore
-  window.installPrompt = null;
-  window.addEventListener('beforeinstallprompt', e => {
-    e.preventDefault();
-    // @ts-ignore
-    window.installPrompt = e;
-  });
-}
+  window.installPrompt = e;
+});
+//}
