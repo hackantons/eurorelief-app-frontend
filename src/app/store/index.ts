@@ -43,7 +43,7 @@ export const actions = (store: Store<State>) => ({
         ? 'rtl'
         : 'ltr';
 
-      require(`dayjs/locale/${intl}`);
+      require(`dayjs/locale/${intl === 'so' ? 'en' : intl}`);
       dayjs.locale(intl);
       setCookie(COOKIE_LANG, intl);
 
