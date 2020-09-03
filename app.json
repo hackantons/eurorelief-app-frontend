@@ -1,7 +1,7 @@
 {
-  "title": "Eurorelief PWA",
-  "short": "Eurorelief",
-  "description": "A Progressive Web App for refugee camps",
+  "title": "EuroRelief App",
+  "short": "EuroRelief",
+  "description": "The EuroRelief App notifies Residents of Moria when they can pick up a Ticket at the Info Point.",
   "color": "#ce171f",
   "colorbkg": "#ce171f"
 }
