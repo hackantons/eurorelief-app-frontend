@@ -24,7 +24,8 @@ const PushNotifications = ({
     if (
       !('serviceWorker' in navigator) ||
       !swRegistration ||
-      !applicationServerKey
+      !applicationServerKey ||
+      !('pushManager' in swRegistration)
     ) {
       nextStep();
     }
