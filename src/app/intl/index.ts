@@ -9,6 +9,10 @@ export const locales: IntlLocales = {
   fr: ['fr-FR', null, 'Français', false],
   // @ts-ignore
   ar: ['ar-SY', null, 'عربى', true],
+  // @ts-ignore
+  fa: ['fa', null, 'فارسی', true],
+  // @ts-ignore
+  so: ['so', null, 'Soomaali', false],
 };
 export const defaultLocale: string = Object.keys(locales)[0];
 
