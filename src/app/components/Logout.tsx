@@ -7,7 +7,8 @@ import './Logout.css';
 import { settingsDB } from '@app/store/idb';
 import { actions } from '@app/store';
 import { useActions } from 'unistore-hooks';
-import { postAuthLogout } from '@app/vendor/api';
+import { postAuthLogout } from '@app/utils/api';
+import { setAuth } from '@app/utils/fetch';
 
 const Logout = ({ className = '' }: { className: string }) => {
   const { formatMessage } = useIntl();
@@ -44,6 +45,7 @@ const Logout = ({ className = '' }: { className: string }) => {
                     settingsDB.delete('password'),
                     settingsDB.delete('user'),
                   ]).then(() => {
+                    setAuth('');
                     /* cleared */
                   });
                   setIdentity(null);

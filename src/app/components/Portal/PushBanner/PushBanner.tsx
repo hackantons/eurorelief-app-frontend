@@ -4,8 +4,8 @@ import { useIntl } from 'react-intl';
 import { State } from '@app/store/types';
 import { useStoreState, useActions } from 'unistore-hooks';
 import { Button } from '@app/theme';
-import { getPushKey } from '@app/vendor/api';
-import { subscribeToPush } from '@app/vendor/helpers';
+import { getPushKey } from '@app/utils/api';
+import { subscribeToPush } from '@app/utils/helpers';
 
 import './PushBanner.css';
 
@@ -24,9 +24,7 @@ const PushBanner = ({ className = '' }: { className?: string }) => {
         .then(([reg, response]) => {
           if (reg && 'pushManager' in reg) {
             setSwRegistration(reg);
-            setApplicationServerKey(
-              new Uint8Array(Object.values(response.data))
-            );
+            setApplicationServerKey(new Uint8Array(Object.values(response)));
           }
         })
         .catch(() => {});

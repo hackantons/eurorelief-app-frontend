@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ConnectForm } from './ConnectForm';
 import InputText from './Input';
-import { unique } from '@app/vendor/helpers';
+import { unique } from '@app/utils/helpers';
 
 import './FormField.css';
 
