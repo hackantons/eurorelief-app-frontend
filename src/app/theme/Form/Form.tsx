@@ -1,8 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
-import { useForm, useFormContext, FormContext } from 'react-hook-form';
-
-//import './Form.css';
+import { useForm, FormContext } from 'react-hook-form';
 
 const Form = ({
   onSubmit,
@@ -21,7 +18,7 @@ const Form = ({
     <FormContext {...methods}>
       <form
         onSubmit={methods.handleSubmit(v => onSubmit(v))}
-        className={cn(className, 'form')}
+        className={`${className} form`}
         {...props}
       >
         {children}

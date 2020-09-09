@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import { State } from '@app/store/types';
 import { useStoreState, useActions } from 'unistore-hooks';
-import { FETCH_STATES } from '@app/vendor/constants';
+import { FETCH_STATES } from '@app/utils/constants';
 import { actions } from '@app/store';
 import { Loader, Message, Badge, Icon } from '@app/theme';
 import { Notification as NotificationType } from './types';

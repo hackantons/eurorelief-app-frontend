@@ -4,20 +4,20 @@ import {
   postCampID,
   postAuthSignIn,
   getUser,
-} from '@app/vendor/api';
+} from '@app/utils/api';
 import { Identity } from '@app/store/types';
 
 export const fetchUser = (): Promise<Identity> =>
   new Promise((resolve, reject) =>
     getUser()
-      .then(res => resolve(res.data))
+      .then(res => resolve(res))
       .catch(e => reject(e))
   );
 
 export const updateUser = (data): Promise<Identity> =>
   new Promise((resolve, reject) =>
     postUser(data)
-      .then(res => resolve(res.data))
+      .then(res => resolve(res))
       .catch(e => reject(e))
   );
 
@@ -25,7 +25,7 @@ export const signIn = (uuid: string, password: string): Promise<string> =>
   new Promise((resolve, reject) =>
     postAuthSignIn(uuid, password)
       .then(res => {
-        resolve(res.data.jwt);
+        resolve(res.jwt);
       })
       .catch(e => reject(e))
   );
@@ -36,13 +36,13 @@ export const createUser = (
 ): Promise<{ user: string; password: string }> =>
   new Promise((resolve, reject) =>
     putUser(uuid, lang)
-      .then(res => resolve(res.data))
+      .then(res => resolve(res))
       .catch(e => reject(e))
   );
 
 export const resolveCampID = (number: string): Promise<string> =>
   new Promise((resolve, reject) =>
     postCampID(number)
-      .then(res => resolve(res.data.uuid))
+      .then(res => resolve(res.uuid))
       .catch(e => reject(e))
   );

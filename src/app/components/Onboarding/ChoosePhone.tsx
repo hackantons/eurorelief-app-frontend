@@ -3,7 +3,7 @@ import { InputText, Message } from '@app/theme';
 import { useIntl } from 'react-intl';
 
 import './ChoosePhone.css';
-import { isValidPhoneNumber } from '@app/vendor/helpers';
+import { isValidPhoneNumber } from '@app/utils/helpers';
 
 const ChoosePhone = ({
   className = '',

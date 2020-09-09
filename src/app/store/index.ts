@@ -1,14 +1,14 @@
 import { defaultLocale, fetchMessages, locales } from '../intl';
-import { isDev } from '../vendor/helpers';
+import { isDev } from '../utils/helpers';
 import { Identity, State } from '@app/store/types';
 
 import createStore, { Store } from 'unistore';
 import devtools from 'unistore/devtools';
 //import { settingsDB } from '@app/store/idb';
-import { getMessages, postMessagesSeen } from '@app/vendor/api';
-import { COOKIE_LANG, FETCH_STATES } from '@app/vendor/constants';
-import dayjs from '@app/vendor/dayjs';
-import { setCookie } from '@app/vendor/cookie';
+import { getMessages, postMessagesSeen } from '@app/utils/api';
+import { COOKIE_LANG, FETCH_STATES } from '@app/utils/constants';
+import dayjs from '@app/utils/dayjs';
+import { setCookie } from '@app/utils/cookie';
 import { notificationsDB, settingsDB } from '@app/store/idb';
 
 const initialState: State = {
@@ -80,7 +80,7 @@ export const actions = (store: Store<State>) => ({
       }
       getMessages()
         .then(res => {
-          const notifications = res.data;
+          const notifications = res;
 
           // delete outdated notifications
           dbNotifications

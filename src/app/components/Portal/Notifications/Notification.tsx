@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { Notification as NotificationType } from './types';
-import dayjs from '@app/vendor/dayjs';
+import dayjs from '@app/utils/dayjs';
 
 import './Notification.css';
 import { Icon } from '@app/theme';

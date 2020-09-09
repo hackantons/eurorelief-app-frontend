@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import { request as axios, RequestResponse } from '@app/utils/fetch';
 
 export const getMessages = () => axios.get(`${API_BASE}messages/`);
 
@@ -28,11 +28,12 @@ export const putUser = (uuid: string, lang: string = '') =>
     ...(lang !== '' ? { lang } : {}),
   });
 
-export const getLanguageStrings = (locale: string): Promise<AxiosResponse> =>
+export const getLanguageStrings = (locale: string): Promise<RequestResponse> =>
   axios.get(`https://i18n.camp.nico.dev/${locale}/`);
 
-export const getPushKey = (): Promise<AxiosResponse> =>
-  axios.get(`${API_BASE}push/key/`);
+export const getPushKey = (): Promise<any> => axios.get(`${API_BASE}push/key/`);
+export const getPushKey2 = (): Promise<any> =>
+  axios.get(`${API_BASE}push/keyeeee/`);
 
-export const putSubscription = (subscription): Promise<AxiosResponse> =>
+export const putSubscription = (subscription): Promise<RequestResponse> =>
   axios.put(`${API_BASE}subscription/`, subscription);
