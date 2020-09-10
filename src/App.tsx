@@ -11,8 +11,8 @@ import Portal from '@comp/Portal/Portal';
 import { Logo } from '@app/theme';
 import { doSignIn } from '@app/authentication/actions';
 import { fetchUser } from '@app/authentication/network';
-import { getCookie } from '@app/vendor/cookie';
-import { COOKIE_LANG } from '@app/vendor/constants';
+import { getCookie } from '@app/utils/cookie';
+import { COOKIE_LANG } from '@app/utils/constants';
 import { locales } from '@app/intl';
 
 import './App.css';
@@ -54,13 +54,13 @@ const App = () => {
     if (Object.keys(locales).indexOf(lang) !== -1 && lang !== intl.locale) {
       setLocale(lang);
     }
-  });
+  }, []);
 
   React.useEffect(() => {
     setOffline(!navigator.onLine);
     window.addEventListener('online', () => setOffline(false), false);
     window.addEventListener('offline', () => setOffline(true), false);
-  });
+  }, []);
 
   return (
     <IntlProvider locale={intl.locale} messages={intl.messages}>

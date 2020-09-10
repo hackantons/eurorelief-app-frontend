@@ -46,6 +46,7 @@ const RegistrationNumber = ({
             label=""
             component={InputRegnumber}
             disabled={loading}
+            value="05/"
             onValueChanged={newValue => setId(newValue)}
           />
         </FormFieldset>

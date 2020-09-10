@@ -1,4 +1,4 @@
-import { putSubscription } from '@app/vendor/api';
+import { putSubscription } from '@app/utils/api';
 
 export const isDev: boolean = window.location.href.indexOf('localhost') !== -1;
 

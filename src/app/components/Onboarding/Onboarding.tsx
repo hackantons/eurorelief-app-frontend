@@ -24,8 +24,8 @@ import {
 import { doSignIn } from '@app/authentication/actions';
 
 import './Onboarding.css';
-import { getPushKey, putSubscription } from '@app/vendor/api';
-import { isValidPhoneNumber, subscribeToPush } from '@app/vendor/helpers';
+import { getPushKey, putSubscription } from '@app/utils/api';
+import { isValidPhoneNumber, subscribeToPush } from '@app/utils/helpers';
 
 const PROGRESS_STATES = {
   WELCOME: 'welcome',
@@ -59,7 +59,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
     Promise.all([navigator.serviceWorker.getRegistration(), getPushKey()]).then(
       ([reg, response]) => {
         setSwRegistration(reg);
-        setApplicationServerKey(new Uint8Array(Object.values(response.data)));
+        setApplicationServerKey(new Uint8Array(Object.values(response)));
       }
     );
   }, []);
@@ -139,7 +139,7 @@ const Onboarding = ({ className = '' }: { className?: string }) => {
         updateUser({ phone, regnumber: id })
           .then(identity => resolve(identity))
           .catch(e => {
-            if (e.response.data.data.status === 418) {
+            if (e.response.data.status === 418) {
               reject(formatMessage({ id: 'onboarding.phone.error' }));
             } else {
               reject(

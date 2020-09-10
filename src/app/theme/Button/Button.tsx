@@ -1,6 +1,6 @@
 import React from 'react';
 import { VNode } from 'preact';
-import cn from 'classnames';
+import cn from '@app/utils/classnames';
 
 import { Icon, Loader } from '@app/theme';
 
@@ -8,14 +8,14 @@ import './Button.css';
 
 const Button = ({
   className = '',
-  children,
+  children = null,
   onClick,
   round = false,
   red = false,
   loading = false,
   small = false,
   ui = 'normal',
-  icon,
+  icon = '',
   ...props
 }: {
   className?: string;
@@ -31,14 +31,17 @@ const Button = ({
 }) => {
   return (
     <button
-      className={cn(className, 'button', 'button--type-' + ui, {
-        'button--icon': icon,
-        'button--round': round,
-        'button--has-text': children,
-        'button--bkg-red': red,
-        'button--loading': loading,
-        'button--size-small': small,
-      })}
+      className={
+        `${className} button button--type-${ui}` +
+        cn({
+          'button--icon': icon !== '',
+          'button--round': round,
+          'button--has-text': children !== null,
+          'button--bkg-red': red,
+          'button--loading': loading,
+          'button--size-small': small,
+        })
+      }
       onClick={onClick ? () => onClick() : null}
       {...props}
     >

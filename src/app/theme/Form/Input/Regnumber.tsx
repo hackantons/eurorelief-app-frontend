@@ -40,7 +40,7 @@ const InputRegnumber = ({
         <input
           className="regnumber__input-prefix"
           type="number"
-          placeholder="05"
+          placeholder="00"
           value={prefix}
           name={`${name}-prefix`}
           // @ts-ignore

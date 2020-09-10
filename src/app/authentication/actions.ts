@@ -1,6 +1,6 @@
 import { settingsDB } from '@app/store/idb';
 import { signIn as networkSignIn } from './network';
-import axios from 'axios';
+import { setAuth } from '@app/utils/fetch';
 
 const generateJWT = (): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -26,12 +26,12 @@ export const doSignIn = (): Promise<boolean> =>
         generateJWT()
           .then(jwt => {
             settingsDB.set('jwt', jwt);
-            axios.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
+            setAuth(jwt);
             resolve(true);
           })
           .catch(e => reject(e));
       } else {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
+        setAuth(jwt);
         resolve(true);
       }
     });

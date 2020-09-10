@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DOCUMENT_TYPES } from '@app/vendor/constants';
+import { DOCUMENT_TYPES } from '@app/utils/constants';
 import { Button } from '@app/theme';
 import { useIntl } from 'react-intl';
 

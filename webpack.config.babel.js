@@ -103,13 +103,13 @@ module.exports = (env, argv) => {
               include: [/\.html$/, /\.js$/, /\.css$/],
               maximumFileSizeToCacheInBytes: 5000000,
             }),
-            new DefinePlugin({
-              API_BASE: JSON.stringify(
-                process.env.API_BASE || 'https://api.camp.nico.dev/'
-              ),
-            }),
           ]
         : []),
+      new DefinePlugin({
+        API_BASE: JSON.stringify(
+          process.env.API_BASE || 'https://api.camp.nico.dev/'
+        ),
+      }),
     ],
     module: {
       rules: [
