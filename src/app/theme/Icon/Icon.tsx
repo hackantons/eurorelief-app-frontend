@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import cn from 'classnames';
+import cn from '@app/utils/classnames';
 
 import './Icon.css';
 
@@ -31,18 +31,21 @@ const Icon = ({
     loadIcon().then(loaded => setLoadedIcon(loaded.default));
   }, [icon]);
 
+  cn({
+    'icon--animation-spin': spinning,
+    'icon--button': button,
+    'icon--round': round,
+  });
+
   return (
     <div
-      className={cn(
-        className,
-        'icon',
-        rotate !== false ? `icon--rotate-${rotate}` : '',
-        {
-          'icon--animation-spin': spinning,
-          'icon--button': button,
-          'icon--round': round,
-        }
-      )}
+      className={`${className} icon ${
+        rotate !== false ? `icon--rotate-${rotate}` : ''
+      } ${cn({
+        'icon--animation-spin': spinning,
+        'icon--button': button,
+        'icon--round': round,
+      })}`}
       dangerouslySetInnerHTML={{ __html: loadedIcon }}
     />
   );

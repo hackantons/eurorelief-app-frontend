@@ -23,6 +23,7 @@ const ChooseLanguage = ({ className = '' }: { className?: string }) => {
           red={intl.locale === key}
           loading={intl.loading === key}
           disabled={intl.loading === key}
+          small
         >
           {locale[2]}
         </Button>

@@ -17,7 +17,7 @@ import {
 import { actions } from '@app/store';
 
 import './Settings.css';
-import { postUser } from '@app/vendor/api';
+import { postUser } from '@app/utils/api';
 
 const Settings = ({ className = '' }: { className?: string }) => {
   const { formatMessage } = useIntl();
@@ -72,13 +72,13 @@ const Settings = ({ className = '' }: { className?: string }) => {
                 })
                 .catch(e => {
                   if (
-                    e.response.data.data.status === 403 ||
-                    e.response.data.data.status === 500
+                    e.response.data.status === 403 ||
+                    e.response.data.status === 500
                   ) {
                     setError(
                       formatMessage({ id: 'portal.settings.change.forbidden' })
                     );
-                  } else if (e.response.data.data.status === 418) {
+                  } else if (e.response.data.status === 418) {
                     setError(
                       formatMessage({
                         id: 'portal.settings.change.invalidNumber',
